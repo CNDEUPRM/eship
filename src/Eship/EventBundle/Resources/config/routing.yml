@@ -1,0 +1,237 @@
+event_homepage:
+    path:     /
+    defaults: { _controller: EventBundle:Default:homepage }
+    options:
+            expose: true
+
+event_business:
+    path: /business
+    defaults: { _controller: EventBundle:Business:list}
+    options:
+            expose: true
+
+event_innactive_business:
+    path: /business/inactive
+    defaults: { _controller: EventBundle:Business:inactiveList}
+    options:
+            expose: true
+
+event_business_by_client:
+    path: /owned_business/{client_id}
+    defaults: { _controller: EventBundle:Business:getBusinessByClient}
+    options:
+            expose: true
+
+event_add_business:
+    path: /business/new_business
+    defaults: { _controller: EventBundle:Business:addBusiness}
+    options:
+            expose: true
+
+event_edit_business:
+    path: /business/edit/{business_id}
+    defaults: { _controller: EventBundle:Business:editBusiness}
+    options:
+            expose: true
+
+event_business_profile:
+    path: /business/{business_id}
+    defaults: { _controller: EventBundle:Business:showBusiness}
+    options:
+            expose: true
+
+event_edit_business_growth:
+    path: /business/{business_id}/growth/edit
+    defaults: { _controller: EventBundle:Business:editGrowthTracking}
+    options:
+            expose: true
+
+event_business_growth:
+    path: /business/{business_id}/growth/{stage}
+    defaults: { _controller: EventBundle:Business:growthTracking}
+    options:
+            expose: true
+
+event_client_profile:
+    path: /client/{id}
+    defaults: { _controller: EventBundle:Client:show}
+    options:
+            expose: true
+
+event_edit_client:
+    path: /client/{id}/edit
+    defaults: { _controller: EventBundle:Client:editProfile}
+    options:
+            expose: true
+
+event_counselor_profile:
+    path: /counselor/{id}
+    defaults: { _controller: EventBundle:Counselor:show}
+    options:
+            expose: true
+
+event_edit_counselor:
+    path: /counselor/{id}/edit
+    defaults: { _controller: EventBundle:Counselor:editProfile}
+    options:
+            expose: true
+
+event_counselor_work_report:
+    path: /counselor/{id}/work_report
+    defaults: { _controller: EventBundle:Counselor:getCounselorWorkReport}
+    options:
+            expose: true
+
+event_meeting_report_list:
+    path: /meeting_report/{business_id}
+    defaults: { _controller: EventBundle:MeetingReport:list}
+    options:
+            expose: true
+
+event_add_meeting_report:
+    path: /meeting_report/{business_id}/new_report
+    defaults: { _controller: EventBundle:MeetingReport:addReport}
+    options:
+            expose: true
+
+event_view_meeting_report:
+    path: /meeting_report/{business_id}/{report_id}
+    defaults: { _controller: EventBundle:MeetingReport:viewReport}
+    options:
+            expose: true
+
+event_get_performance_review_summary:
+    path: /performance_review/summary
+    defaults: { _controller: EventBundle:PerformanceReview:getReviewSummary}
+    options:
+            expose: true
+
+event_new_performance_review:
+    path: /performance_review/new_review
+    defaults: { _controller: EventBundle:PerformanceReview:createNewReview}
+    options:
+            expose: true
+
+event_general_statistics:
+    path: /statistics
+    defaults: { _controller: EventBundle:StatisticReport:getGeneralStatistic}
+    options:
+            expose: true
+
+event_general_statistics_date:
+    path: /statistics/date
+    defaults: { _controller: EventBundle:StatisticReport:getGeneralStatisticByDate}
+    options:
+            expose: true
+
+event_business_statistics:
+    path: /statistics/{business_id}
+    defaults: { _controller: EventBundle:StatisticReport:getSpecificBusiness}
+    options:
+            expose: true
+
+event_register_client:
+    path: /register/client
+    defaults: { _controller: EventBundle:UserRegister:clientRegister}
+    options:
+            expose: true
+
+event_register_counselor:
+    path: /register/counselor/{permission_id}
+    defaults: { _controller: EventBundle:UserRegister:counselorRegister}
+    options:
+            expose: true
+
+event_work_report_list:
+    path: /work_report/{business_id}/{meetingReport_id}
+    defaults: { _controller: EventBundle:WorkReport:list}
+    options:
+            expose: true
+
+event_add_work_report:
+    path: /work_report/{business_id}/{meetingReport_id}/new_report
+    defaults: { _controller: EventBundle:WorkReport:addWorkReport}
+    options:
+            expose: true
+
+event_view_work_report:
+    path: /work_report/{business_id}/{meetingReport_id}/{update_id}
+    defaults: { _controller: EventBundle:WorkReport:viewReport}
+    options:
+            expose: true
+
+event_client_login:
+    path: /login
+    defaults: { _controller: EventBundle:Security:clientLogin}
+
+event_counselor_login:
+    path: /login/counselor
+    defaults: { _controller: EventBundle:Security:counselorLogin}
+    options:
+            expose: true
+
+event_counselor_add_business:
+    path: /business/counselor/new_business
+    defaults: { _controller: EventBundle:Business:counselorAddBusiness}
+    options:
+            expose: true
+#missing
+event_admin_deactivate_counselor:
+    path: /admin/counselors
+    defaults: { _controller: EventBundle:Admin:deactivateCounselor}
+    options:
+            expose: true
+#missing
+event_admin_deactivate_business:
+    path: /admin/business
+    defaults: { _controller: EventBundle:Admin:deactivateBusiness}
+    options:
+            expose: true
+
+event_admin_add_counselor:
+    path: /admin/new_counselor
+    defaults: { _controller: EventBundle:Admin:addCounselor}
+    options:
+            expose: true
+
+event_counselor_change_password:
+    path: /settings/change_password/counselor
+    defaults: { _controller: EventBundle:ChangePassword:counselorChangePassword}
+    options:
+            expose: true
+
+event_client_change_password:
+    path: /settings/change_password/client
+    defaults: { _controller: EventBundle:ChangePassword:clientChangePassword}
+    options:
+            expose: true
+
+event_client_forgot_password:
+    path: /forgot_password/client/{permission_id}
+    defaults: { _controller: EventBundle:ChangePassword:clientForgotPassword}
+    options:
+            expose: true
+
+event_counselor_forgot_password:
+    path: /forgot_password/counselor/{permission_id}
+    defaults: { _controller: EventBundle:ChangePassword:counselorForgotPassword}
+    options:
+            expose: true
+
+event_counselor_list:
+    path: /counselor
+    defaults: { _controller: EventBundle:Counselor:list}
+    options:
+            expose: true
+
+event_forgot_password_client:
+    path: /forgot_password/client
+    defaults: { _controller: EventBundle:ChangePassword:clientPasswordRequest}
+    options:
+            expose: true
+
+event_forgot_password_counselor:
+    path: /forgot_password/counselor
+    defaults: { _controller: EventBundle:ChangePassword:counselorPasswordRequest}
+    options:
+            expose: true

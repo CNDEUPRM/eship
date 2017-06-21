@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: otmaa16c1i9nwrek.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
+    database_port: 3306
+    database_name: zeu7r8xzgrwburlv
+    database_user: lbz40l6o5jk07xqz
+    database_password: e9k0i8f16mg3s9f6
+    mailer_transport: gmail
+    mailer_host: 127.0.0.1
+    mailer_user: eship.test.email@gmail.com
+    mailer_password: Eship!@#$
+    secret: cdb61c2c44075061eb27d382043c3925c659148d

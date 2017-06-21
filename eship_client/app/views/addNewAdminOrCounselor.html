@@ -1,0 +1,49 @@
+<!-- PAGE TITLE -->
+<title>Add New Admin or Counselor - E-Ship Network Case Management</title>
+<div class="page-title">
+  <h2 style="text-align:center">
+    <!--<span class="fa fa-arrow-circle-o-left"></span>-->Add New Admin or Counselor
+  </h2>
+</div>
+<!-- END PAGE TITLE -->
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+  <div class="row">
+    <div class="col-md-6" style="float:none; margin:auto">
+      <!-- START VALIDATIONENGINE PLUGIN -->
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h3 style="text-align:center">Enter the email of the new user you wish to add and specify their type of account</h3>
+          <form id="validate"  role="form" class="form-horizontal" novalidate>
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">New User Email:</label>
+              <div class="col-md-6 col-xs-12">
+                <input required type="text" name="email" ng-model="new_user.email" class="form-control"/>
+              </div>
+              <div class="col-md-1">
+                <span class="help-block">Required</span>
+              </div>
+            </div>
+            <div class="form-group">
+            <label class="col-md-3 col-xs-12 control-label">Type of Account:</label>
+            <div class="col-md-6 col-xs-12">
+              <select required name="role" ng-model="new_user.role" class="select">
+                <option value="">Choose option</option>
+                <option value="0">Counselor</option>
+                <option value="1">Administrator</option>
+              </select>
+            </div>
+            <div class="col-md-1">
+              <span class="help-block">Required</span>
+            </div>
+          </div>
+            <div class="btn-group pull-right">
+              <button class="btn btn-primary" ng-click="postNewUser()" ng-disabled="!isValid()" type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- END VALIDATIONENGINE PLUGIN -->
+    </div>
+  </div>
+</div>

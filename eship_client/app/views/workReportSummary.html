@@ -1,0 +1,71 @@
+<title>{{view_report.name}}'s Work Report - E-Ship Network Case Management</title>
+<!-- PAGE TITLE -->
+<div class="page-title">
+  <div class="col-md-6 ">
+    <h2>
+      <!--<span class="fa fa-arrow-circle-o-left"></span>-->Work Report for: {{view_report.name}}
+    </h2>
+  </div>
+  <!-- END PAGE TITLE -->
+  <!-- PAGE CONTENT WRAPPER -->
+  <div class="page-content-wrap">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- START VALIDATIONENGINE PLUGIN -->
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <form id="validate0" role="form" class="form-horizontal">
+              <div class="form-group">
+                <label class="col-md-3 control-label">Created by:</label>
+                <div class="col-md-6">
+                  <label class= "control-label" >{{view_report.firstName}} {{view_report.initial}} {{view_report.lastName}}</label>
+                </div>
+              </div>
+              <div id="validate1" role="form" class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Date:</label>
+                  <div class="col-md-6">
+                    <label class= "control-label">{{view_report.date.date.split(' ')[0] | date}}</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-3 col-xs-12 control-label">Notes of Updates:</label>
+                  <div class="col-md-6 col-xs-12">
+                    <label class="control-label">
+                      <p style="text-align:justify">{{view_report.notes}}</p>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-md-3 col-xs-12 control-label">Task Completed:</label>
+                  <div class="col-md-6 col-xs-12">
+                    <label class="control-label">
+                      <p style="text-align:justify">{{view_report.taskCompleted}}</p>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-md-3 col-xs-12 control-label">Task in Progress:</label>
+                  <div class="col-md-6 col-xs-12">
+                    <label class="control-label">
+                      <p style="text-align:justify">{{view_report.taskInProgress}}</p>
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Hours Worked:</label>
+                  <div class="col-md-6">
+                    <label class="control-label">{{view_report.workedHours}}</label>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- END VALIDATIONENGINE PLUGIN -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<title>Home - E-Ship Network Case Management</title>
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+  <div class="container">
+    <h1 align="center" class="display-3">Welcome to the Entrepreneurship Network Case Management</h1>
+      <br><br><br><br><br><br><br><br>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Example row of columns -->
+  <div class="row">
+    <div class="col-md-4">
+      <h2 align="center">Business</h2>
+      <p>To access the profile of the businesses that you own or have access to, select the Business option on the sidebar
+        or click the button below. </p>
+      <p align="center"><a class="btn btn-secondary" href="#/business" ng-show="user.role[0] == 'ROLE_ADMIN' || user.role[0] == 'ROLE_COUNSELOR'"
+            role="button">View details &raquo;</a></p>
+      <p><a class="btn btn-secondary" ng-click="viewMeetingReportHistory()" ng-show="user.role[0] == 'ROLE_CLIENT'" role="button">View details &raquo;</a></p>
+    </div>
+    <div class="col-md-4" ng-show="user.role[0] == 'ROLE_ADMIN' || user.role[0] == 'ROLE_COUNSELOR'">
+      <h2 align="center">Meeting Reports</h2>
+      <p>In order for you to access the Meeting Report section, you must first select the business you wish to create the
+         report for. Once you have done that, the Meeting Report Item will appear on the sidebar menu.
+      </p>
+    </div>
+    <div class="col-md-4" ng-show="user.role[0] == 'ROLE_ADMIN' || user.role[0] == 'ROLE_COUNSELOR'">
+      <h2 align="center">Work Reports</h2>
+      <p>Once you have selected to view an existing Meeting Report, you will see a button on the top right corner. When you
+        click it it will direct you to all the work reports that are related to the meeting report you selected previously.
+      </p>
+    </div>
+    <div class="col-md-4" ng-show="user.role[0] == 'ROLE_CLIENT'">
+      <h2 align="center">Settings</h2>
+      <p>To change your current password, you should enter the Settings tab on the sidebar menu.</p>
+      <p><a class="btn btn-secondary" href="#" role="button">Go to Settings &raquo;</a></p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

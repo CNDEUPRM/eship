@@ -1,0 +1,51 @@
+<title>Login - E-Ship Network Case Management</title>
+<div class="login-container" ng-controller="loginCtrl">
+  <div class="login-box animated fadeInDown">
+    <div><img src="images/E-shipLogo.png" width="400" height="150" alt="Eship Logo"></div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <form role="form" class="form-horizontal" novalidate>
+          <h3 class="login-title"><strong>Welcome {{counselor? 'Counselor':'Client'}}</strong>, Please login</h3>
+          <div>
+            <div class="form-group">
+              <div class="col-md-12">
+                <input  type="email" name="email" ng-model="email" class="form-control" placeholder="Email" required/>
+
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-12">
+                <input type="password" name="password" ng-model="password" class="form-control" placeholder="Password" required/>
+
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-6">
+                <a class="btn btn-link btn-block" ng-hide="!counselor" ng-click="forgotPasswordCounselor()">Forgot your password?</a>
+                <a class="btn btn-link btn-block" ng-hide="counselor" ng-click="forgotPasswordClient()">Forgot your password?</a>
+                <a class="btn btn-link btn-block" ng-hide="counselor" ng-click="registerClient()">Register</a>
+              </div>
+              <div class="col-md-6" >
+                <button class="btn btn-info btn-block" ng-click="login()" ng-disabled="isWaiting">Log In
+                  <i ng-if="isWaiting" class="fa fa-spinner fa-pulse fa-fw"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="login-footer">
+          <div class="pull-left text-black">
+            &copy;2017 E-Ship Network
+          </div>
+          <div class="pull-right" ng-hide="counselor">
+            <a class="text-danger" ng-click="counselorLogin()">Are you a Counselor? Login here</a>
+          </div>
+
+          <div class="pull-right" ng-hide="!counselor">
+            <a class="text-danger" ng-click="clientLogin()">Are you a Client? Login here</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

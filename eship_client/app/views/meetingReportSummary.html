@@ -1,0 +1,90 @@
+<title>{{meetingReportInfo.name}}'s Meeting Report - E-Ship Network Case Management</title>
+<!-- PAGE TITLE -->
+<div class="page-title" >
+  <h2>Meeting Report For: {{meetingReportInfo.name}} on {{meetingReportInfo.date.date.split(' ')[0] | date}}</h2>
+</div>
+<!-- END PAGE TITLE -->
+<div class="col-md-12">
+  <button class="btn btn-primary pull-right" style="margin-left:10px;  margin-bottom:10px" type="button" ng-click="newReport()">View Work Reports Associated with this Report</button>
+</div>
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- START VALIDATIONENGINE PLUGIN -->
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <form id="validate"  role="form" class="form-horizontal" action="javascript:alert('Form #validate submited');">
+            <div class="form-group">
+              <label class="col-md-3 control-label">Created by:</label>
+              <div class="col-md-3">
+                <label class="control-label">{{meetingReportInfo.firstName}} {{meetingReportInfo.initial}} {{meetingReportInfo.lastName}}</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 control-label">Stage of Development:</label>
+              <div class="col-md-3">
+                <label class="control-label">{{meetingReportInfo.stageOfDevelopment}}</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Discussed Issues:</label>
+              <div class="col-md-6 col-xs-12">
+                <label class="control-label">
+                  <p style="text-align:justify">{{meetingReportInfo.discussedIssues}}</p>
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Counselor Pending Matters:</label>
+              <div class="col-md-6 col-xs-12">
+                <label class="control-label">
+                  <p style="text-align:justify">{{meetingReportInfo.counselorPendingMatters}}</p>
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Client Pending Matters:</label>
+              <div class="col-md-6 col-xs-12">
+                <label class="control-label">
+                  <p style="text-align:justify">{{meetingReportInfo.clientPendingMatters}}</p>
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 control-label">Current Number of Employees:</label>
+              <div class="col-md-1">
+                <label class="control-label">{{meetingReportInfo.numberOfEmployees}}</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 control-label">Private Investing:</label>
+              <div class="col-md-2">
+                <label class="control-label">{{meetingReportInfo.privateInvestment | currency}}</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 control-label">Public Investing:</label>
+              <div class="col-md-2">
+                <label class="control-label">{{meetingReportInfo.publicInvestment| currency}}</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 control-label">Meeting Duration:</label>
+              <div class="col-md-2">
+                <label class="control-label">{{meetingReportInfo.meetingDuration}}</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 control-label">Next Meeting:</label>
+              <div class="col-md-3">
+                <label class="control-label">{{meetingReportInfo.dateNextMeeting.date.split(' ')[0] | date}}</label>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- END VALIDATIONENGINE PLUGIN -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<!-- PAGE TITLE -->
+<title>{{business_stats}}'s Statistics - E-Ship Network Case Management</title>
+<div class="page-title" >
+  <h2>General Statistics For: {{business_stats.name}}</h2>
+</div>
+<!-- END PAGE TITLE -->
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- START VALIDATION ENGINE PLUGIN -->
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label class="col-md-3 control-label">Stage of Development:</label>
+              <div class="col-md-3">
+                <label class="control-label"><i>{{business_stats.stageOfDevelopment}}</i></label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 control-label">Number of Employees:</label>
+              <div class="col-md-3">
+                <label class="control-label"><i>{{business_stats.numberOfEmployees}}</i></label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Public Investment:</label>
+              <div class="col-md-3">
+                <label class="control-label"><i>{{business_stats.publicInvestment | currency}}</i></label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Private Investment:</label>
+              <div class="col-md-3">
+                <label class="control-label"><i>{{business_stats.privateInvestment | currency}}</i></label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 control-label">Total Worked Hours:</label>
+              <div class="col-md-1">
+                <label class="control-label"><i>{{business_stats.workedHours}}</i></label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Number of Meetings:</label>
+              <div class="col-md-3">
+                <label class="control-label">{{business_stats.numberOfMeetings}}</label>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- END VALIDATION ENGINE PLUGIN -->
+    </div>
+  </div>
+</div>

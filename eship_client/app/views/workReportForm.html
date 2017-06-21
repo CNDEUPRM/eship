@@ -1,0 +1,178 @@
+<title>Create Work Report - E-Ship Network Case Management</title>
+<!-- PAGE TITLE -->
+<div class="page-title">
+  <h2>Create A New Work Report: </h2>
+</div>
+<!-- END PAGE TITLE -->
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- START VALIDATIONENGINE PLUGIN -->
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <form id="validate"  role="form" class="form-horizontal" novalidate>
+            <div class="form-group">
+              <label class="col-md-3 control-label">Date:</label>
+              <div class="col-md-6">
+                <div class="input-group">
+                  <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="report.date_"
+                         is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"
+                         alt-input-formats="altInputFormats" />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default"
+                            ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-1">
+                <span class="help-block">Required</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Notes of Work Done:</label>
+              <div class="col-md-6 col-xs-12">
+                <textarea required name="saa" ng-model="report.notes" class="form-control" rows="5"></textarea>
+              </div>
+              <div class="col-md-1">
+                <span class="help-block">Required</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Task Completed:</label>
+              <div class="col-md-6 col-xs-12">
+                <textarea name="saa" ng-model="report.task_completed" class="form-control" rows="5"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Task In Progress:</label>
+              <div class="col-md-6 col-xs-12">
+                <textarea name="saa" ng-model="report.task_in_progress" class="form-control" rows="5"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 control-label">Work Duration:</label>
+              <div class="col-md-2">
+                <select required class="form-control c-select m-b ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched"
+                        name="multipleSelect"  ng-model="startM">
+                  <option value="0">12:00am</option>
+                  <option value="0.5">12:30am</option>
+                  <option value="1">1:00am</option>
+                  <option value="1.5">1:30am</option>
+                  <option value="2">2:00am</option>
+                  <option value="2.5">2:30am</option>
+                  <option value="3">3:00am</option>
+                  <option value="3.5">3:30am</option>
+                  <option value="4">4:00am</option>
+                  <option value="4.5">4:30am</option>
+                  <option value="5">5:00am</option>
+                  <option value="5.5">5:30am</option>
+                  <option value="6">6:00am</option>
+                  <option value="6.5">6:30am</option>
+                  <option value="7">7:00am</option>
+                  <option value="7.5">7:30am</option>
+                  <option value="8">8:00am</option>
+                  <option value="8.5">8:30am</option>
+                  <option value="9">9:00am</option>
+                  <option value="9.5">9:30am</option>
+                  <option value="10">10:00am</option>
+                  <option value="10.5">10:30am</option>
+                  <option value="11">11:00am</option>
+                  <option value="11.5">11:30am</option>
+                  <option value="12">12:00pm</option>
+                  <option value="12.5">12:30pm</option>
+                  <option value="13">1:00pm</option>
+                  <option value="13.5">1:30pm</option>
+                  <option value="14">2:00pm</option>
+                  <option value="14.5">2:30pm</option>
+                  <option value="15">3:00pm</option>
+                  <option value="15.5">3:30pm</option>
+                  <option value="16">4:00pm</option>
+                  <option value="16.5">4:30pm</option>
+                  <option value="17">5:00pm</option>
+                  <option value="17.5">5:30pm</option>
+                  <option value="18">6:00pm</option>
+                  <option value="18.5">6:30pm</option>
+                  <option value="19">7:00pm</option>
+                  <option value="19.5">7:30pm</option>
+                  <option value="20">8:00pm</option>
+                  <option value="20.5">8:30pm</option>
+                  <option value="21">9:00pm</option>
+                  <option value="21.5">9:30pm</option>
+                  <option value="22">10:00pm</option>
+                  <option value="22.5">10:30pm</option>
+                  <option value="23">11:00pm</option>
+                  <option value="23.5">11:30pm</option>
+                </select>
+              </div>
+              <div class="col-xs-2 text-center">
+                <label class="control-label">to:</label>
+              </div>
+              <div class="col-md-2">
+                <select  required class="form-control c-select m-b ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched"
+                        name="multipleSelect"  ng-model="endM">
+                  <option value="0">12:00am</option>
+                  <option value="0.5">12:30am</option>
+                  <option value="1">1:00am</option>
+                  <option value="1.5">1:30am</option>
+                  <option value="2">2:00am</option>
+                  <option value="2.5">2:30am</option>
+                  <option value="3">3:00am</option>
+                  <option value="3.5">3:30am</option>
+                  <option value="4">4:00am</option>
+                  <option value="4.5">4:30am</option>
+                  <option value="5">5:00am</option>
+                  <option value="5.5">5:30am</option>
+                  <option value="6">6:00am</option>
+                  <option value="6.5">6:30am</option>
+                  <option value="7">7:00am</option>
+                  <option value="7.5">7:30am</option>
+                  <option value="8">8:00am</option>
+                  <option value="8.5">8:30am</option>
+                  <option value="9">9:00am</option>
+                  <option value="9.5">9:30am</option>
+                  <option value="10">10:00am</option>
+                  <option value="10.5">10:30am</option>
+                  <option value="11">11:00am</option>
+                  <option value="11.5">11:30am</option>
+                  <option value="12">12:00pm</option>
+                  <option value="12.5">12:30pm</option>
+                  <option value="13">1:00pm</option>
+                  <option value="13.5">1:30pm</option>
+                  <option value="14">2:00pm</option>
+                  <option value="14.5">2:30pm</option>
+                  <option value="15">3:00pm</option>
+                  <option value="15.5">3:30pm</option>
+                  <option value="16">4:00pm</option>
+                  <option value="16.5">4:30pm</option>
+                  <option value="17">5:00pm</option>
+                  <option value="17.5">5:30pm</option>
+                  <option value="18">6:00pm</option>
+                  <option value="18.5">6:30pm</option>
+                  <option value="19">7:00pm</option>
+                  <option value="19.5">7:30pm</option>
+                  <option value="20">8:00pm</option>
+                  <option value="20.5">8:30pm</option>
+                  <option value="21">9:00pm</option>
+                  <option value="21.5">9:30pm</option>
+                  <option value="22">10:00pm</option>
+                  <option value="22.5">10:30pm</option>
+                  <option value="23">11:00pm</option>
+                  <option value="23.5">11:30pm</option>
+                </select>
+              </div>
+              <div class="col-md-1">
+                <span class="help-block">Required</span>
+              </div>
+            </div>
+            <div class="btn-group pull-right">
+              <button class="btn btn-primary" ng-click="postWork()" ng-disabled="!isValid()" type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- END VALIDATIONENGINE PLUGIN -->
+    </div>
+  </div>
+</div>

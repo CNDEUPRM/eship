@@ -1,0 +1,34 @@
+<!-- PAGE TITLE -->
+<title>Your Businesses - E-Ship Network Case Management</title>
+<div class="page-title">
+  <h2>Your Businesses</h2>
+</div>
+<!-- END PAGE TITLE -->
+<div class="col-md-12">
+  <div class="input-group push-down-10">
+    <span class="input-group-addon"><span class="fa fa-search"></span></span>
+    <input type="text" class="form-control" placeholder="Search for a Business." ng-model="search" value="Search for a Business"/>
+  </div>
+  <button class="btn btn-primary pull-right" style="margin-bottom:10px" type="button" ng-click="addNewBusiness()">Add New Business</button>
+</div>
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap" >
+  <div class="row">
+    <div class="col-md-12" >
+      <!-- START BUSINESS LIST -->
+      <div class="panel panel-default">
+        <div class="panel-body list-group list-group-contacts">
+          <a href ng-click="selectBusiness(b.business_id)" class="list-group-item" ng-repeat="b in business | filter:search">
+            <img src="{{b.logo}}" class="pull-left" alt="{{business.name}}"/>
+            <span class="contacts-title">{{b.name}}</span>
+            <p>Owner: {{b.firstName}} {{b.lastName}} </p>
+            <!--
+            <p ng-if="b.isActive > 0">Status: Active</p>
+            <p ng-if="b.isActive < 1">Status: Inactive</p>-->
+          </a>
+        </div>
+      </div>
+      <!-- END BUSINESS LIST -->
+    </div>
+  </div>
+</div>

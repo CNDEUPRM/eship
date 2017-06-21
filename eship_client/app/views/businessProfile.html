@@ -1,0 +1,58 @@
+<!-- PAGE CONTENT WRAPPER -->
+<title>{{business.name}}'s Profile - E-Ship Network Case Management</title>
+<div class="page-content-wrap">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="panel panel-default">
+        <div class="panel-body profile">
+          <div class="profile-image">
+            <img src="{{business.logo}}" alt="{{business.name}}"/>
+          </div>
+          <div class="profile-data">
+            <div class="profile-data-name">{{business.name}}</div>
+            <div class="profile-data-title" style="color: #FFF;">Type of Business: {{business.typeOfBusiness}}</div>
+          </div>
+        </div>
+
+        <div class="panel-body list-group border-bottom">
+          <p class="list-group-item active text-white">Business Information</p>
+          <p  class="list-group-item">Owner: {{business.firstName}} {{business.lastName}} </input></p>
+          <p class="list-group-item">Owner's Email: {{business.ownerEmail}}</p>
+          <p class="list-group-item" ng-if="business.isActive < 1">Status: Inactive</p>
+          <p class="list-group-item" ng-if="business.isActive > 0">Status: Active</p>
+          <p  class="list-group-item">Business Organization: {{business.businessLink}}</p>
+          <p  class="list-group-item">Stage of Business: {{business.stageOfDevelopment}}</p>
+          <p class="list-group-item">Private Investing: {{business.privateInvestment | currency}}</p>
+          <p class="list-group-item">Public Investing: {{business.publicInvestment | currency}}</p>
+          <p class="list-group-item">Number of Employees: {{business.numberOfEmployees}}</p>
+          <p class="list-group-item">Website: {{business.website}}</p>
+          <p class="list-group-item" ng-if="business.isProject < 1">Type of Client: Client</p>
+          <p class="list-group-item" ng-if="business.isProject > 0">Type of Client: Project</p>
+          <p class="list-group-item">Date Joined: {{business.date.date.split(' ')[0] | date}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Business Description</h3>
+        </div>
+        <div class="panel-body">
+          <p>{{business.description}}
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Requested Help:</h3>
+        </div>
+        <div class="panel-body">
+          <p>{{business.requestedHelp}}
+        </div>
+      </div>
+      <button class="btn btn-primary pull-right" style="margin-bottom:10px" type="submit" ng-show="(user.role[0] == 'ROLE_ADMIN' || user.role[0] == 'ROLE_COUNSELOR')
+      && (business.isActive > 0)" ng-click="deactivateButton()">Deactivate Business</button>
+      <button class="btn btn-primary pull-right" style="margin-bottom:10px" type="submit" ng-show="(user.role[0] == 'ROLE_ADMIN' || user.role[0] == 'ROLE_COUNSELOR')
+      && (business.isActive < 1)" ng-click="activateButton()">Activate Business</button>
+    </div>
+  </div>
+</div>

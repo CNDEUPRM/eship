@@ -1,0 +1,53 @@
+<title>Performance Review History - E-Ship Network Case Management</title>
+<!-- PAGE TITLE -->
+<div class="page-title">
+  <h2>Performance Review History:</h2>
+</div>
+<!-- END PAGE TITLE -->
+<div class="col-md-12">
+  <button class="btn btn-primary pull-right" style="margin-left:10px;  margin-bottom:10px" type="button" ng-click="addNewReview()">Create New Performance Review</button>
+</div>
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap" >
+  <div class="row">
+    <div class="col-md-12" >
+      <!-- START DEFAULT DATATABLE -->
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-actions">
+              <thead>
+              <tr>
+                <th width="50">Date</th>
+                <th width="100">Client Email</th>
+                <th width="100">Client Name</th>
+                <th width="50">Satisfaction Level</th>
+                <th width="300">Comment</th>
+                <th width="50">Were our services useful?</th>
+                <th width="100">City</th>
+                <th width="100">Phone</th>
+                <th width="150">Counselor</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr  ng-repeat="r in review">
+                <td>{{r.date.date.split(' ')[0] | date}}</td>
+                <td>{{r.clientEmail}}</td>
+                <td>{{r.clientFirstName}} {{r.clientLastName}}</td>
+                <td>{{r.satisfactionLevel}}</td>
+                <td>{{r.comment}}</td>
+                <td ng-if="r.usefulnessOfService > 0">Yes</td>
+                <td ng-if="r.usefulnessOfService < 1">No</td>
+                <td>{{r.city}}</td>
+                <td>{{r.phone}}</td>
+                <td>{{r.firstName}} {{r.initial}} {{r.lastName}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- END DEFAULT DATATABLE -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<title>Work Report History - E-Ship Network Case Management</title>
+<!-- PAGE TITLE -->
+<div class="page-title">
+  <h2>Work Report History: </h2>
+</div>
+<!-- END PAGE TITLE -->
+<div class="col-md-12">
+  <div class="input-group push-down-10">
+    <span class="input-group-addon"><span class="fa fa-search"></span></span>
+    <input type="text" class="form-control" placeholder="Search" ng-model="search" value="Search"/>
+  </div>
+  <button class="btn btn-primary pull-right" ng-click="newReport()" style="margin-left:10px;  margin-bottom:10px" type="button">Create New Work Report</button>
+
+</div>
+
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+  <div class="row">
+    <div class="col-md-12" >
+      <!-- START REPORT LIST -->
+      <div class="panel panel-default">
+        <div class="panel-body list-group list-group-contacts">
+          <div ng-show="workReports.length > 0" class="table-responsive">
+            <a href ng-click="selectView(report.updateId)" class="list-group-item" ng-repeat="report in workReports | filter:search">
+              <span class="contacts-title">Date: {{report.date.date.split(' ')[0] | date}}</span>
+              <p>Counselor: {{report.firstName}} {{report.initial}} {{report.lastName}} </p>
+            </a>
+          </div>
+          <h5 ng-hide="workReports.length > 0">
+            There are no work reports for this meeting report.
+          </h5>
+        </div>
+      </div>
+      <!-- END REPORT LIST -->
+
+
+
+    </div>
+  </div>
+
+</div>

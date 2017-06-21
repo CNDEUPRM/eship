@@ -1,0 +1,284 @@
+<!-- PAGE CONTENT WRAPPER -->
+<title>Counselor's Registration - E-Ship Network Case Management</title>
+<div class="page-content-wrap">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- START VALIDATIONENGINE PLUGIN -->
+      <div class="panel panel-default">
+        <!-- PAGE TITLE -->
+        <div class="page-title">
+          <h2>Counselor's Registration:</h2>
+        </div>
+        <!-- END PAGE TITLE -->
+        <div class="panel-body">
+          <form role="form" name="counselor_reg" class="form-horizontal" novalidate>
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">First Name:</label>
+              <div class="col-md-6 col-xs-12">
+                <input required type="text" name="first_name" ng-maxlength="255" ng-model="registration.first_name"
+                       ng-minlength="1" ng-pattern="regexs.bigText" class="form-control"/>
+              </div>
+              <div class="col-sm-1">
+                <img   ng-if="counselor_reg.first_name.$dirty && counselor_reg.first_name.$invalid"
+                       src="images/invalid.png" width="16" height="16"/>
+                <img   ng-if="counselor_reg.first_name.$dirty && counselor_reg.first_name.$valid"
+                       src="images/valid.png" width="16" height="16"/>
+                <span class="help-block">Required</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Last Name:</label>
+              <div class="col-md-6 col-xs-12">
+                <input required type="text" name="last_name" ng-maxlength="255" ng-model="registration.last_name"
+                       ng-minlength="1" ng-pattern="regexs.bigText" class="form-control"/>
+              </div>
+              <div class="col-sm-1">
+                <img   ng-if="counselor_reg.last_name.$dirty && counselor_reg.last_name.$invalid"
+                       src="images/invalid.png" width="16" height="16"/>
+                <img   ng-if="counselor_reg.last_name.$dirty && counselor_reg.last_name.$valid"
+                       src="images/valid.png" width="16" height="16"/>
+                <span class="help-block">Required</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Initial:</label>
+              <div class="col-md-1 col-xs-12">
+                <input type="text" name="initial" maxlength="1" min="0" ng-model="registration.initial"
+                       ng-pattern="regexs.bigText" class="form-control"/>
+              </div>
+              <div class="col-sm-1">
+                <img   ng-if="counselor_reg.initial.$dirty && counselor_reg.initial.$invalid"
+                       src="images/invalid.png" width="16" height="16"/>
+                <img   ng-if="counselor_reg.initial.$dirty && counselor_reg.initial.$valid"
+                       src="images/valid.png" width="16" height="16"/>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Email:</label>
+              <div class="col-md-6 col-xs-12">
+                <input required type="text" name="email" ng-model="registration.email" ng-maxlength="255"
+                       ng-pattern="regexs.email" class="form-control"/>
+              </div>
+              <div class="col-sm-1">
+                <img  ng-if="counselor_reg.email.$dirty && counselor_reg.email.$invalid"
+                      src="images/invalid.png" width="16" height="16"/>
+                <img  ng-if="counselor_reg.email.$dirty && counselor_reg.email.$valid"
+                      src="images/valid.png" width="16" height="16"/>
+                <span class="help-block">Required</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Phone:</label>
+              <div class="col-md-6 col-xs-12">
+                <input required type="number" min="0" ng-pattern="regexs.phone" name="phone" ng-model="registration.phone" ng-maxlength="15" class="form-control"/>
+              </div>
+              <div class="col-sm-1">
+                <img  ng-if="counselor_reg.phone.$dirty && counselor_reg.phone.$invalid"
+                      src="images/invalid.png" width="16" height="16"/>
+                <img  ng-if="counselor_reg.phone.$dirty && counselor_reg.phone.$valid"
+                      src="images/valid.png" width="16" height="16"/>
+                <span class="help-block">Required</span>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Password:</label>
+              <div class="col-md-6 col-xs-12">
+                <input required type="password" autocomplete="off" name="password" ng-model="registration.password_"
+                       class="form-control" ng-minlength="8" ng-maxlength="20" ng-pattern="regexs.password" id="password"/>
+              </div>
+              <div class="col-sm-1">
+                <img ng-if="(counselor_reg.confirm_password.$dirty || counselor_reg.password.$dirty) && (counselor_reg.password.$invalid && !validPassword())"
+                     src="images/invalid.png" width="16" height="16"/>
+                <img ng-if="(counselor_reg.confirm_password.$dirty || counselor_reg.password.$dirty) && (counselor_reg.password.$valid && validPassword())"
+                     src="images/valid.png" width="16" height="16"/>
+                <span class="help-block">Required</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Confirm Password:</label>
+              <div class="col-md-6 col-xs-12">
+                <input required type="password" name="confirm_password" autocomplete="off" ng-model="registration.confirm_password_"
+                       class="form-control" ng-minlength="8" ng-maxlength="20" ng-pattern="regexs.password" id="confirm password"/>
+              </div>
+              <div class="col-sm-1">
+                <img ng-if="(counselor_reg.confirm_password.$dirty || counselor_reg.password.$dirty) && (counselor_reg.password.$invalid && !validPassword())"
+                     src="images/invalid.png" width="16" height="16"/>
+                <img ng-if="(counselor_reg.confirm_password.$dirty || counselor_reg.password.$dirty) && (counselor_reg.password.$valid && validPassword())"
+                     src="images/valid.png" width="16" height="16"/>
+                <span class="help-block">Required</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Age:</label>
+              <div class="col-md-1 col-xs-12">
+                <input required type="number" name="age" ng-maxlength="3" ng-minlength="1" ng-model="registration.age"
+                       min="0" class="form-control"/>
+              </div>
+              <div class="col-sm-1">
+                <img  ng-if="counselor_reg.age.$dirty && counselor_reg.age.$invalid"
+                      src="images/invalid.png" width="16" height="16"/>
+                <img  ng-if="counselor_reg.age.$dirty && counselor_reg.age.$valid"
+                      src="images/valid.png" width="16" height="16"/>
+                <span class="help-block">Required</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Gender:</label>
+              <div class="col-md-6 col-xs-12">
+                <select required name="gender" ng-model="registration.gender" class="select">
+                  <option value="">Choose option</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+              <div class="col-sm-1">
+                <span class="help-block">Required</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Position in UPRM:</label>
+              <div class="col-md-6 col-xs-12">
+                <input type="text" name="position_uprm" ng-maxlength="255" ng-model="registration.position_uprm"
+                       ng-minlength="1" ng-pattern="regexs.bigText" class="form-control"/>
+              </div>
+              <div class="col-sm-1">
+                <img   ng-if="counselor_reg.position_uprm.$dirty && counselor_reg.position_uprm.$invalid"
+                       src="images/invalid.png" width="16" height="16"/>
+                <img   ng-if="counselor_reg.position_uprm.$dirty && counselor_reg.position_uprm.$valid"
+                       src="images/valid.png" width="16" height="16"/>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Department:</label>
+              <div class="col-md-6 col-xs-12">
+                <select required name="gender" ng-model="registration.department" class="select">
+                  <option value="">Choose Option</option>
+                  <option value="Marketing">Marketing</option>
+                  <option value="Human Resources Management">Human Resources Management</option>
+                  <option value="Finance">Finance</option>
+                  <option value="Accounting">Accounting</option>
+                  <option value="Operations Management">Operations Management</option>
+                  <option value="Computerized Information Systems">Computerized Information System</option>
+                  <option value="Office Administration">Office Administration</option>
+                  <option value="Entrepreneurship">Entrepreneurship</option>
+                  <option value="Chemical Engineering">Chemical Engineering</option>
+                  <option value="Mechanical Engineering">Mechanical Engineering</option>
+                  <option value="Electrical Engineering">Electrical Engineering</option>
+                  <option value="Civil Engineering">Civil Engineering</option>
+                  <option value="Computer Engineering">Computer Engineering</option>
+                  <option value="Industrial Engineering">Industrial Engineering</option>
+                  <option value="Software Engineering">Software Engineering</option>
+                  <option value="Biology">Biology</option>
+                  <option value="Industrial Microbiology">Industrial Microbiology</option>
+                  <option value="Pre-Medical Studies">Pre-Medical Studies</option>
+                  <option value="Industrial Biotechnology">Industrial Biotechnology</option>
+                  <option value="Chemistry">Chemistry</option>
+                  <option value="Geology">Geology</option>
+                  <option value="Mathematics">Mathematics</option>
+                  <option value="Mathematics in Computer Sciences">Mathematics in Computer Sciences</option>
+                  <option value="Mathematics Education">Mathematics Education</option>
+                  <option value="Nursing">Nursing</option>
+                  <option value="Physics">Physics</option>
+                  <option value="Physical Sciences">Physical Sciences</option>
+                  <option value="Agricultural Sciences">Agricultural Sciences</option>
+                  <option value="Agronomy">Agronomy</option>
+                  <option value="Agricultural Economics">Agricultural Economics</option>
+                  <option value="Horticulture">Horticulture</option>
+                  <option value="Animal Science">Animal Science</option>
+                  <option value="Crop Protection">Crop Protection</option>
+                  <option value="Agribusiness">Agribusiness</option>
+                  <option value="Agricultural Education">Agricultural Education</option>
+                  <option value="Agricultural Extension">Agricultural Extension</option>
+                  <option value="Soil">Soil</option>
+                  <option value="Environment Agricultural Systems">Environment Agricultural System</option>
+                  <option value="Comparative Literature">Comparative Literature</option>
+                  <option value="Economics">Economics</option>
+                  <option value="English">English</option>
+                  <option value="History">History</option>
+                  <option value="French Language and Literature">French Language and Literature</option>
+                  <option value="Hispanic Studies">Hispanic Studies</option>
+                  <option value="Philosophy">Philosophy</option>
+                  <option value="Physical Education in Teaching">Physical Education in Teaching</option>
+                  <option value="Physical Education in Coaching and Officiating">Physical Education in Coaching and Officiating</option>
+                  <option value="Plastic Arts">Plastic Arts</option>
+                  <option value="Political Sciences">Political Sciences</option>
+                  <option value="Psychology">Psychology</option>
+                  <option value="Social Sciences">Social Sciences</option>
+                  <option value="Sociology">Sociology</option>
+                  <option value="Theory of Art">Theory of Art</option>
+                </select>
+              </div>
+              <div class="col-sm-1">
+                <span class="help-block">Required</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Area of Expertise:</label>
+              <div class="col-md-6 col-xs-12">
+                <select required name="gender" ng-model="registration.expertise" class="select">
+                  <option value="">Choose Option</option>
+                  <option value="Intellectual Property">Intellectual Property</option>
+                  <option value="Incentives">Incentives</option>
+                  <option value="Legal Structure">Legal Structure</option>
+                  <option value="Business Evaluation">Business Evaluation</option>
+                  <option value="Design">Design</option>
+                  <option value="Competitions">Competitions</option>
+                  <option value="Pitching">Pitching</option>
+                  <option value="Permits">Permits</option>
+                  <option value="Business Plan">Business Plan</option>
+                  <option value="Financing">Financing</option>
+                  <option value="Sales">Sales</option>
+                </select>
+              </div>
+              <div class="col-sm-1">
+                <span class="help-block">Required</span>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Relationship with CNDE:</label>
+              <div class="col-md-6 col-xs-12">
+                <input required type="text" name="cnde_organization" ng-model="registration.cnde_organization" ng-maxlength="255"
+                       ng-minlength="1" ng-pattern="regexs.bigText" class="form-control"/>
+              </div>
+              <div class="col-sm-1">
+                <img   ng-if="counselor_reg.cnde_organization.$dirty && counselor_reg.cnde_organization.$invalid"
+                       src="images/invalid.png" width="16" height="16"/>
+                <img   ng-if="counselor_reg.cnde_organization.$dirty && counselor_reg.cnde_organization.$valid"
+                       src="images/valid.png" width="16" height="16"/>
+                <span class="help-block">Required</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">If you are a Professor, What Courses Have You Taught?:</label>
+              <div class="col-md-6 col-xs-12">
+                        <textarea ng-model="registration.teached_courses" class="form-control" ng-maxlength="255"
+                                  ng-minlength="1" ng-pattern="regexs.bigText" rows="5"></textarea>
+              </div>
+            </div>
+
+            <div class="btn-group pull-right">
+              <button class="btn btn-primary" ng-click="submitClient()" ng-disabled="(!isValid() || !validPassword() || counselor_reg.$invalid)"
+                      type="submit">Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- END VALIDATIONENGINE PLUGIN -->
+    </div>
+  </div>
+</div>

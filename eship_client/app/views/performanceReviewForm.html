@@ -1,0 +1,127 @@
+<title>Performance Review - E-Ship Network Case Management</title>
+<!-- PAGE TITLE -->
+<div class="page-title">
+  <h2>Performance Review</h2>
+</div>
+<!-- END PAGE TITLE -->
+<div class="page-content-wrap">
+<div class="row">
+  <div class="col-md-12" style="float:none; margin:auto">
+    <!-- START VALIDATIONENGINE PLUGIN -->
+    <div class="panel panel-default">
+      <div class="panel-body">
+
+        <form id="validate"  role="form" class="form-horizontal" novalidate>
+          <div class="form-group">
+            <label class="col-md-3 col-xs-12 control-label">First Name:</label>
+            <div class="col-md-6 col-xs-12">
+              <input required type="text" name="first_name" ng-model="new_review.first_name" class="form-control"/>
+            </div>
+            <div class="col-md-1">
+              <span class="help-block">Required</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-3 col-xs-12 control-label">Last Name:</label>
+            <div class="col-md-6 col-xs-12">
+              <input required type="text" name="last_name" ng-model="new_review.last_name" class="form-control"/>
+            </div>
+            <div class="col-md-1">
+              <span class="help-block">Required</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-3 col-xs-12 control-label">In a scale from 1 to 10. How would you rate our services?</label>
+            <div class="col-md-6 col-xs-12">
+              <select required name="rate_services" ng-model="new_review.rate_services" class="select">
+                <option value="">Choose option</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
+            <div class="col-md-1">
+              <span class="help-block">Required</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-3 col-xs-12 control-label">Please, provide us with any comments you may have about our services:</label>
+            <div class="col-md-6 col-xs-12">
+              <textarea ng-model="new_review.comment" class="form-control" maxlength="140" rows="3"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-3 col-xs-12 control-label">Was the assistance provided by the Center useful for its purpose?</label>
+            <div class="col-md-6 col-xs-12">
+              <select required name="usefulness" ng-model="new_review.usefulness" class="select">
+                <option value="">Choose option</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+            <div class="col-md-1">
+              <span class="help-block">Required</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-3 col-xs-12 control-label">City of Residence:</label>
+            <div class="col-md-6 col-xs-12">
+              <input required type="text" name="city" ng-model="new_review.city" class="form-control"/>
+            </div>
+            <div class="col-md-1">
+              <span class="help-block">Required</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-3 col-xs-12 control-label">Email:</label>
+            <div class="col-md-6 col-xs-12">
+              <input required type="text" name="email" ng-model="new_review.email" ng-maxlength="255"
+                     ng-pattern="regexs.email" class="form-control"/>
+            </div>
+            <div class="col-sm-1">
+              <img  ng-if="new_review.email.$dirty && new_review.email.$invalid"
+                    src="images/invalid.png" width="16" height="16"/>
+              <img  ng-if="new_review.email.$dirty && new_review.email.$valid"
+                    src="images/valid.png" width="16" height="16"/>
+              <span class="help-block">Required</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-3 col-xs-12 control-label">Phone:</label>
+            <div class="col-md-6 col-xs-12">
+              <input required type="number" name="phone" ng-model="new_review.phone" ng-maxlength="15"
+                     ng-minlength="10" class="form-control"/>
+            </div>
+            <div class="col-sm-1">
+              <img  ng-if="new_review.phone.$dirty && new_review.phone.$invalid"
+                    src="images/invalid.png" width="16" height="16"/>
+              <img  ng-if="new_review.phone.$dirty && new_review.phone.$valid"
+                    src="images/valid.png" width="16" height="16"/>
+              <span class="help-block">Required</span>
+            </div>
+          </div>
+
+          <div class="btn-group pull-right">
+            <button class="btn btn-primary" ng-click="submitReview()" ng-disabled="(!isValid() || new_review.$invalid)" type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- END VALIDATIONENGINE PLUGIN -->
+  </div>
+</div>
+</div>

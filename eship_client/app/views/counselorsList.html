@@ -1,0 +1,51 @@
+<!-- PAGE TITLE -->
+<title>Counselor's List - E-Ship Network Case Management</title>
+<div class="page-title">
+  <h2>Counselor's List</h2>
+</div>
+<!-- END PAGE TITLE -->
+<div class="input-group push-down-10">
+  <span class="input-group-addon"><span class="fa fa-search"></span></span>
+  <input type="text" class="form-control" placeholder="Search" ng-model="search" value="Search"/>
+</div>
+<button class="btn btn-primary pull-right" style="margin-bottom:10px" type="button" ng-click="addNewCounselor()">Add New Counselor</button>
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap" >
+  <div class="row">
+    <div class="col-md-12" >
+      <!-- START BUSINESS LIST -->
+      <div class="panel-body panel-body-table">
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped table-actions">
+            <thead>
+            <tr>
+              <th width="150">Name</th>
+              <th width="50">Position</th>
+              <th width="50">Department</th>
+              <th width="50">Type of User</th>
+              <th width="50">Account Status</th>
+              <th width="50">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="c in counselors | filter:search">
+              <td>{{c.firstName}} {{c.initial}} {{c.lastName}}</td>
+              <td><strong>{{c.position}}</strong></td>
+              <td>{{c.department}}</td>
+              <td ng-if="c.isAdmin < 1">Counselor</td>
+              <td ng-if="c.isAdmin > 0">Admin</td>
+              <td ng-if="c.active < 1">Inactive</td>
+              <td ng-if="c.active > 0">Active</td>
+              <td>
+                <button class="btn btn-primary pull-left" style="margin-bottom:10px" type="submit" ng-show="c.active < 1" ng-click="activateButton(c.counselorId)">Activate Counselor</button>
+                <button class="btn btn-primary pull-left" style="margin-bottom:10px" type="submit" ng-show="c.active > 0"  ng-click="deactivateButton(c.counselorId)">Deactivate Counselor</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- END BUSINESS LIST -->
+    </div>
+  </div>
+</div>

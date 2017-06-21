@@ -1,0 +1,335 @@
+<!-- PAGE TITLE -->
+<title>Add New Business - E-Ship Network Case Management</title>
+<div class="page-title">
+  <h2>Add New Business:</h2>
+</div>
+<!-- END PAGE TITLE -->
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- START VALIDATIONENGINE PLUGIN -->
+      <div class="panel panel-default">
+        <!-- PAGE TITLE -->
+        <div class="page-title">
+          <h2>Owner Information:</h2>
+        </div>
+        <!-- END PAGE TITLE -->
+        <div class="panel-body">
+          <form id="validate"  role="form" class="form-horizontal" name="new_business" novalidate>
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">First Name:</label>
+              <div class="col-md-6 col-xs-12">
+                <input required type="text" name="first_name" ng-maxlength="255" ng-model="business.first_name"
+                       ng-minlength="1" ng-pattern="regexs.bigText" class="form-control"/>
+              </div>
+              <div class="col-sm-1">
+                <img   ng-if="business.first_name.$dirty && business.first_name.$invalid"
+                       src="images/invalid.png" width="16" height="16"/>
+                <img   ng-if="business.first_name.$dirty && business.first_name.$valid"
+                       src="images/valid.png" width="16" height="16"/>
+                <span class="help-block">Required</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Last Name:</label>
+              <div class="col-md-6 col-xs-12">
+                <input required type="text" name="last_name" ng-maxlength="255" ng-model="business.last_name"
+                       ng-minlength="1" ng-pattern="regexs.bigText" class="form-control"/>
+              </div>
+              <div class="col-sm-1">
+                <img   ng-if="business.last_name.$dirty && business.last_name.$invalid"
+                       src="images/invalid.png" width="16" height="16"/>
+                <img   ng-if="business.last_name.$dirty && business.last_name.$valid"
+                       src="images/valid.png" width="16" height="16"/>
+                <span class="help-block">Required</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Initial:</label>
+              <div class="col-md-1 col-xs-12">
+                <input type="text" name="initial" maxlength="1" min="0" ng-model="business.initial"
+                       ng-pattern="regexs.bigText" class="form-control"/>
+              </div>
+              <div class="col-sm-1">
+                <img   ng-if="business.initial.$dirty && business.initial.$invalid"
+                       src="images/invalid.png" width="16" height="16"/>
+                <img   ng-if="business.initial.$dirty && business.initial.$valid"
+                       src="images/valid.png" width="16" height="16"/>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Email:</label>
+              <div class="col-md-6 col-xs-12">
+                <input required type="text" name="email" ng-model="business.email" ng-maxlength="255"
+                       ng-pattern="regexs.email" class="form-control"/>
+              </div>
+              <div class="col-sm-1">
+                <img  ng-if="business.email.$dirty && business.email.$invalid"
+                      src="images/invalid.png" width="16" height="16"/>
+                <img  ng-if="business.email.$dirty && business.email.$valid"
+                      src="images/valid.png" width="16" height="16"/>
+                <span class="help-block">Required</span>
+              </div>
+            </div>
+
+            <div class="page-title">
+              <h2>Business Information:</h2>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Business Name:</label>
+              <div class="col-md-6 col-xs-12">
+                <input required type="text" name="business_name" ng-maxlength="255" ng-model="business.business_name"
+                       ng-minlength="1" ng-pattern="regexs.bigText" class="form-control"/>
+              </div>
+              <div class="col-sm-1">
+                <img   ng-if="business.business_name.$dirty && business.business_name.$invalid"
+                       src="images/invalid.png" width="16" height="16"/>
+                <img   ng-if="business.business_name.$dirty && business.business_name.$valid"
+                       src="images/valid.png" width="16" height="16"/>
+                <span class="help-block">Required</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Business Link that Generates the Need of Our Services:</label>
+              <div class="col-md-6 col-xs-12">
+                <select required name="business_link" ng-model="business.business_link" class="select">
+                  <option value="">Choose option</option>
+                  <option value="Private Company">Private Company</option>
+                  <option value="Non Profit Corporation">Non Profit Corporation</option>
+                  <option value="Cooperative or Ownership of Workers">Cooperative or Ownership of Workers</option>
+                  <option value="Government">Government</option>
+                  <option value="Business Association Generating an Idea">Business Association Generating an Idea</option>
+                  <option value="Own Business">Own Business</option>
+                  <option value="University">University</option>
+                  <option value="Press or Media">Press or Media</option>
+                  <option value="Community Development">Community Development</option>
+                </select>
+              </div>
+              <div class="col-sm-1">
+                <img  ng-if="business.business_link.$dirty && business.business_link.$invalid"
+                      src="images/invalid.png" width="16" height="16"/>
+                <img  ng-if="business.business_link.$dirty && business.business_link.$valid"
+                      src="images/valid.png" width="16" height="16"/>
+                <span class="help-block">Required</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Type of Business:</label>
+              <div class="col-md-6 col-xs-12">
+                <select required name="type_of_business" ng-model="business.type_of_business" class="select">
+                  <option value="">Choose option</option>
+                  <option value="Agriculture">Agriculture</option>
+                  <option value="Distribution">Distribution</option>
+                  <option value="Exportation">Exportation</option>
+                  <option value="Manufacture">Manufacture</option>
+                  <option value="Non Profit or Social Business">Non Profit or Social Business</option>
+                  <option value="Patent in Development">Patent in Development</option>
+                  <option value="Product Sales">Product Sales</option>
+                  <option value="Retail Trade">Retail Trade</option>
+                  <option value="Services">Services</option>
+                  <option value="Technology">Technology</option>
+                  <option value="Wholesale Business">Wholesale Business</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="col-sm-1">
+                <img  ng-if="business.type_of_business.$dirty && business.type_of_business.$invalid"
+                      src="images/invalid.png" width="16" height="16"/>
+                <img  ng-if="business.type_of_business.$dirty && business.type_of_business.$valid"
+                      src="images/valid.png" width="16" height="16"/>
+                <span class="help-block">Required</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Business Description:</label>
+              <div class="col-md-6 col-xs-12">
+                        <textarea required ng-model="business.description" ng-maxlength="1000" ng-minlength="1"
+                                  ng-pattern="regexs.bigText" class="form-control" rows="5">
+                        </textarea>
+              </div>
+              <div class="col-sm-1">
+                <img  ng-if="business.description.$dirty && business.description.$invalid"
+                      src="images/invalid.png" width="16" height="16"/>
+                <img  ng-if="business.description.$dirty && business.description.$valid"
+                      src="images/valid.png" width="16" height="16"/>
+                <span class="help-block">Required</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Stage of Development:</label>
+              <div class="col-md-6 col-xs-12">
+                <select required name="type_of_business" ng-model="business.stage" class="select">
+                  <option value="">Choose option</option>
+                  <option value="Agriculture">Idea In Development</option>
+                  <option value="Distribution">Startup</option>
+                  <option value="Exportation">Business In Development</option>
+                  <option value="Manufacture">Expanding Business</option>
+                  <option value="Non Profit or Social Business">Decline</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="col-sm-1">
+                <img  ng-if="business.stage.$dirty && business.stage.$invalid"
+                      src="images/invalid.png" width="16" height="16"/>
+                <img  ng-if="business.stage.$dirty && business.stage.$valid"
+                      src="images/valid.png" width="16" height="16"/>
+                <span class="help-block">Required</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">How can we Help You?:</label>
+              <div class="col-md-6 col-xs-12">
+                        <textarea required ng-model="business.requested_help" ng-maxlength="1000" ng-minlength="1"
+                                  ng-pattern="regexs.bigText" class="form-control" rows="5">
+                        </textarea>
+              </div>
+              <div class="col-sm-1">
+                <img  ng-if="business.requested_help.$dirty && business.requested_help.$invalid"
+                      src="images/invalid.png" width="16" height="16"/>
+                <img  ng-if="business.requested_help.$dirty && business.requested_help.$valid"
+                      src="images/valid.png" width="16" height="16"/>
+                <span class="help-block">Required</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Number of Employees:</label>
+              <div class="col-md-1 col-xs-12">
+                <input required type="number" name="age" ng-maxlength="3" ng-minlength="1" min="0"
+                       name="employees" ng-model="business.employees" class="form-control"/>
+              </div>
+              <div class="col-sm-1">
+                <img  ng-if="business.employees.$dirty && business.employees.$invalid"
+                      src="images/invalid.png" width="16" height="16"/>
+                <img  ng-if="business.employees.$dirty && business.employees.$valid"
+                      src="images/valid.png" width="16" height="16"/>
+                <span class="help-block">Required</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Business Website:</label>
+              <div class="col-md-6 col-xs-12">
+                <input type="text" name="website" ng-maxlength="255" ng-model="business.website"
+                       ng-minlength="1" ng-pattern="regexs.bigText" class="form-control"/>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Business Facebook:</label>
+              <div class="col-md-6 col-xs-12">
+                <input type="text" name="facebook" ng-maxlength="255"
+                       ng-minlength="1" ng-pattern="regexs.bigText" ng-model="business.facebook" class="form-control"/>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Business Twitter:</label>
+              <div class="col-md-6 col-xs-12">
+                <input type="text" name="twitter" ng-maxlength="255"
+                       ng-minlength="1" ng-pattern="regexs.bigText" ng-model="business.twitter" class="form-control"/>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 col-xs-12 control-label">Have you Participated in any Business Competitions?:</label>
+              <div class="col-md-6 col-xs-12">
+                <select required name="business_competition" ng-model="business.business_competition" class="select">
+                  <option value="">Choose option</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+              <div class="col-sm-1">
+                <img  ng-if="business.business_competition.$dirty && business.business_competition.$invalid"
+                      src="images/invalid.png" width="16" height="16"/>
+                <img  ng-if="business.business_competition.$dirty && business.business_competition.$valid"
+                      src="images/valid.png" width="16" height="16"/>
+                <span class="help-block">Required</span>
+              </div>
+            </div>
+
+            <div class="form-group" ng-show="business.business_competition > 0">
+              <label class="col-md-3 col-xs-12 control-label">Names of Competitions:</label>
+              <div class="col-md-6 col-xs-12">
+                        <textarea ng-model="business.name_competition" ng-maxlength="1000" ng-minlength="1"
+                                  ng-pattern="regexs.bigText" class="form-control" rows="5">
+                        </textarea>
+              </div>
+            </div>
+
+            <div class="form-group" ng-show="business.business_competition > 0">
+              <label class="col-md-3 col-xs-12 control-label">Awards or Recognitions:</label>
+              <div class="col-md-6 col-xs-12">
+                        <textarea ng-model="business.award" ng-maxlength="1000" ng-minlength="1"
+                                  ng-pattern="regexs.bigText" class="form-control" rows="5">
+                        </textarea>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 control-label">Business Logo:</label>
+              <div class="col-md-6">
+                <div class="form-file">
+                  <button class="btn white" ngf-select="uploadFiles($files)"
+                          multiple title="upload" resetOnClick="true"
+                          ng-disabled="!business.business_name">Select a JPG or PNG File</button>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Photolink :</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="txtphoto"
+                       ng-model="business.logo"
+                       placeholder="PhotoLink" disabled required ng-pattern="patterns.url">
+              </div>
+              <div class="col-sm-1">
+                <img  ng-if="new_business.txtphoto.$dirty && new_business.txtphoto.$invalid"
+                      src="images/invalid.png" width="16" height="16"/>
+                <img  ng-if="new_business.txtphoto.$dirty && new_business.txtphoto.$valid"
+                      src="images/valid.png" width="16" height="16"/>
+              </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="form-group" ng-repeat="file in files">
+              <div class="col-sm-offset-3 col-sm-8">
+                <label>{{(file.progress===100)? 'Uploaded ':'Uploading '}} {{file.name}} {{f.$error}} {{f.$errorParam}}</label>
+                <br>
+                <uib-progressbar animate="true" value="file.progress" type="{{(file.progress>98)? 'success':'warning'}}"
+                                 class="progress-striped"><b>{{file.progress}}%</b></uib-progressbar>
+                <br>
+              </div>
+              <div class="col-sm-offset-3 col-sm-8" ng-show="file.progress===100">
+                <label>Preview:</label>
+                <div class="profile">
+                  <div class="profile-image">
+                    <img ngf-src="business.logo">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="btn-group pull-right">
+              <button class="btn btn-primary" ng-click="submitBusiness()" ng-disabled="(!isValid() || register.$invalid)" type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- END VALIDATIONENGINE PLUGIN -->
+    </div>
+  </div>
+</div>
