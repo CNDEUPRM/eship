@@ -20,71 +20,87 @@ use Doctrine\ORM\EntityRepository;
  */
 class MeetingReportRepository extends EntityRepository
 {
+    /**
+     * Query that returns a list of all the meeting reports of a specific business
+     */
     public function getMeetingReportList($business_id)
     {
-        return $this->createQueryBuilder('mr')
-            ->andWhere('mr.business = :idParam')
-            ->leftJoin('mr.business', 'business')
-            ->leftJoin('mr.counselor', 'counselor')
+        return $this->createQueryBuilder('mr') //alias of the table
+            ->andWhere('mr.business = :idParam') //where clause of the query
+            ->leftJoin('mr.business', 'business') //left join of meeting report table with the business table
+            ->leftJoin('mr.counselor', 'counselor') //left join of meeting report table with the counselor table
             ->addSelect('mr.reportId', 'mr.date' ,'business.name', 'counselor.firstName', 'counselor.lastName',
                         'counselor.initial', 'mr.stageOfDevelopment')
-            ->addOrderBy('mr.date')
+            //select clause of the query
+            ->addOrderBy('mr.date') //Order By
             ->addSelect('counselor')
-            ->setParameter('idParam', $business_id)
-            ->getQuery()
+            ->setParameter('idParam', $business_id) //parameter used in the where clause, done like this to avoid SQL injections
+            ->getQuery() //finishing the query
             ->execute();
     }
 
-    //view a specific Meeting Report
+    /**
+     * Query that returns the data stored within a specific meeting report
+     */
     public function getMeetingReport($business_id, $report_id)
     {
-        return $this->createQueryBuilder('mr')
-            ->andWhere('mr.business = :id_business')
-            ->andWhere('mr.reportId = :id_report')
-            ->leftJoin('mr.business', 'business')
-            ->leftJoin('mr.counselor', 'counselor')
+        return $this->createQueryBuilder('mr') //alias of the table
+            ->andWhere('mr.business = :id_business')  //where clause of the query
+            ->andWhere('mr.reportId = :id_report') //where clause of the query
+            ->leftJoin('mr.business', 'business') //left join of meeting report table with the business table
+            ->leftJoin('mr.counselor', 'counselor') //left join of meeting report table with the business table
             ->addSelect('mr.reportId', 'mr.date', 'mr.stageOfDevelopment', 'mr.discussedIssues',
                         'mr.suggestionsAndAgreements', 'mr.numberOfEmployees', 'mr.privateInvestment',
                         'mr.publicInvestment', 'mr.meetingDuration', 'mr.dateNextMeeting', 'mr.counselorPendingMatters',
                         'mr.clientPendingMatters', 'mr.pdfDocument', 'business.name', 'counselor.firstName',
                         'counselor.lastName', 'counselor.initial')
-            ->setParameter('id_business', $business_id)
-            ->setParameter('id_report', $report_id)
-            ->getQuery()
+            //select clause of the query
+            ->setParameter('id_business', $business_id) //parameter used in the where clause, done like this to avoid SQL injections
+            ->setParameter('id_report', $report_id) //parameter used in the where clause, done like this to avoid SQL injections
+            ->getQuery() //finishing the query
             ->execute();
     }
 
+    /**
+     * Query that returns the meeting report statistics in a time interval
+     */
     public function getMeetingReportStatisticsByDate($start, $end)
     {
-        return $this->createQueryBuilder('mr')
+        return $this->createQueryBuilder('mr') //alias of the table
             ->addSelect('SUM(mr.numberOfEmployees) as jobsCreated', 'SUM(mr.publicInvestment) as totalPublicInvestment',
                 'SUM(mr.privateInvestment) as totalPrivateInvestment', 'SUM(mr.meetingDuration) as totalMeetingsDuration',
                 'COUNT(mr.reportId) as totalMeetings')
-            ->where('mr.date BETWEEN :start AND :end' )
-            ->setParameter('start', $start)
-            ->setParameter('end', $end)
-            ->getQuery()
+            //select clause of the query
+            ->where('mr.date BETWEEN :start AND :end' ) //Where clause of the query
+            ->setParameter('start', $start) //parameter used in the where clause, done like this to avoid SQL injections
+            ->setParameter('end', $end) //parameter used in the where clause, done like this to avoid SQL injections
+            ->getQuery() //finishing the query
             ->execute();
     }
 
+    /**
+     * Query that returns the meeting report statistics
+     */
     public function getMeetingReportStatistics()
     {
-        return $this->createQueryBuilder('mr')
+        return $this->createQueryBuilder('mr') //alias of the table
             ->addSelect('SUM(mr.numberOfEmployees) as jobsCreated', 'SUM(mr.publicInvestment) as totalPublicInvestment',
                 'SUM(mr.privateInvestment) as totalPrivateInvestment', 'SUM(mr.meetingDuration) as totalMeetingsDuration',
                 'COUNT(mr.reportId) as totalMeetings')
-            ->getQuery()
+            //select clause of the query
+            ->getQuery() //finishing the query
             ->execute();
     }
 
     public function getCounselorReport($id)
     {
-        return $this->createQueryBuilder('mr')
-            ->andWhere('mr.counselor = :idParam')
+        return $this->createQueryBuilder('mr') //alias of the table
+            ->andWhere('mr.counselor = :idParam') //where clause of the query
             ->addSelect('SUM(mr.numberOfEmployees) as jobsCreated', 'SUM(mr.publicInvestment) as totalPublicInvestment',
                 'SUM(mr.privateInvestment) as totalPrivateInvestment', 'SUM(mr.meetingDuration) as totalMeetingsDuration')
-            ->setParameter('idParam', $id)
-            ->getQuery()
+            //select clause of the query
+            ->setParameter('idParam', $id) //parameter used in the where clause, done like this to avoid SQL injections
+            ->getQuery() //finishing the query
             ->execute();
     }
 

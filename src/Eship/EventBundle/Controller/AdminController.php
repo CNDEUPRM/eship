@@ -27,15 +27,18 @@ class AdminController extends Controller
 
     public function addCounselorAction(Request $request)
     {
+        //decoding the json file
         $data = json_decode($request->getContent(), true);
         $request->request->replace($data);
 
+        //looking for the counselor object related to the data of the json
         $counselor = $this->getCounselor($request->request->get('counselor_id'));
         $counselor2 = $this->getCounselorByEmail($request->request->get('email'));
         $counselor3 = $this->getCounselorRequestByEmail($request->request->get('email'));
 
-        if($counselor2==null || ($counselor3==null))
+        if($counselor2==null || ($counselor3==null)) //checking if the counselor is not in the database
         {
+            //creating a new Counselor Request object and assigning values to it
             $counselorRequest = new CounselorRequest();
             $counselorRequest->setEmail($request->request->get('email'));
             $counselorRequest->setRole($request->request->get('role'));
@@ -43,13 +46,14 @@ class AdminController extends Controller
             $counselorRequest->setCounselor($counselor);
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($counselorRequest);
+            $em->persist($counselorRequest); //finishing the query
             $em->flush();
 
             $adminName = $counselor->getFirstName().' '.$counselor->getLastName();
-            $link = 'business.uprm.edu/eshipcase/#/register/counselor/'.$counselorRequest->getRequestId();
+            $link = 'business.uprm.edu/eshipcase/#/register/counselor/'.$counselorRequest->getRequestId(); //linkf or the email
 
             $this->counselorRegistrationEmail($adminName, $counselor->getCounselorEmail(), $link, $counselorRequest->getEmail());
+            //sending the email
             return new JsonResponse($counselorRequest->getRequestId());
         }
         $error = array(
@@ -65,15 +69,16 @@ class AdminController extends Controller
      */
     public function deactivateCounselorAction(Request $request)
     {
+        //decoding the json
         $data = json_decode($request->getContent(), true);
         $request->request->replace($data);
 
         $counselor_id = $request->request->get('counselor_id');
-        $counselor = $this->getCounselor($counselor_id);
+        $counselor = $this->getCounselor($counselor_id); //getting the counselor object
 
-        $counselor->setIsActive($request->request->get('status'));
+        $counselor->setIsActive($request->request->get('status')); //assigning a new value to the counselor object
 
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager(); //finishing the query
         $em->persist($counselor);
         $em->flush();
 
@@ -85,26 +90,28 @@ class AdminController extends Controller
      */
     public function deactivateBusinessAction(Request $request)
     {
+        //decoding the json
         $data = json_decode($request->getContent(), true);
         $request->request->replace($data);
 
         $business_id = $request->request->get('business_id');
-        $business = $this->getBusiness($business_id);
+        $business = $this->getBusiness($business_id); //getting the counselor object
 
-        $business->setIsActive($request->request->get('status'));
+        $business->setIsActive($request->request->get('status')); //assigning a new value to the counselor object
 
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager(); //finishing the query
         $em->persist($business);
         $em->flush();
 
         return new JsonResponse($business->getIsActive());
     }
 
+    //Helper methods
     private function counselorRegistrationEmail($adminName, $adminEmail, $link, $email)
     {
         $message = \Swift_Message::newInstance()
             ->setSubject('You have been invited to join the E-Ship Network Case Management')
-            ->setFrom('eship.test.email@gmail.com')
+            ->setFrom('cnde@uprm.edu')
             ->setTo($email)
             ->setBody(
                 $this->renderView(

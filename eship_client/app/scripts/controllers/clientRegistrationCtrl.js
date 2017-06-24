@@ -96,10 +96,8 @@ angular.module('eshipApp')
 
         $scope.submitClient = function ()
         {
-            console.log($scope.registration);
             $scope.registration.password = md5.createHash($scope.registration.password_);
             $scope.registration.confirm_password = md5.createHash($scope.registration.confirm_password_);
-            console.log($scope.registration);
             clientSvc.postClient($scope.registration)
                 .then(function (response)
                 {

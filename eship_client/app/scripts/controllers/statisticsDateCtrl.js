@@ -176,7 +176,6 @@ angular.module('eshipApp')
         {
           $scope.report.start = formatDate($scope.report.start_ );
           $scope.report.end = formatDate($scope.report.end_);
-          console.log($scope.report);
           statisticsSvc.postGeneralStatisticsDate($scope.report)
             .then(function (response)
             {

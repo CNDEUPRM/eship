@@ -68,14 +68,15 @@ class BusinessController extends Controller
      */
     public function addBusinessAction(Request $request)
     {
+        //decoding the json
         $data = json_decode($request->getContent(), true);
         $request->request->replace($data);
 
-        $client = $this->getClient($request->request->get('client_id'));
+        $client = $this->getClient($request->request->get('client_id')); //getting the client object
 
         $owner_id = $client->getOwner();
 
-        $owner = $this->getOwner($owner_id);
+        $owner = $this->getOwner($owner_id); //getting the owner object
 
         if ($owner==null) {
             throw $this->createNotFoundException(
@@ -83,6 +84,7 @@ class BusinessController extends Controller
             );
         }
 
+        //creating the new business object and adding the data to the business object
         $business = new Business();
         $business->setName($request->request->get('business_name'));
         $business->setOwner($owner);
@@ -105,7 +107,7 @@ class BusinessController extends Controller
         $business->setDate(new \DateTime('now'));
         $business->setWorkedHours(0);
 
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager(); //finishing the object
         $em->persist($business);
         $em->flush();
 
@@ -192,9 +194,9 @@ class BusinessController extends Controller
     {
         $businessRepository = $this->getDoctrine()
             ->getManager()
-            ->getRepository('EventBundle:Business');
+            ->getRepository('EventBundle:Business'); //calling the business repository so we can call those queries
 
-        $businesses = $businessRepository->getBusinessById($business_id);
+        $businesses = $businessRepository->getBusinessById($business_id); //alling the get business by id query
 
         if ($businesses==null) {
             throw $this->createNotFoundException(
@@ -210,11 +212,12 @@ class BusinessController extends Controller
      */
     public function counselorAddBusinessAction(Request $request)
     {
+        //decoding the json
         $data = json_decode($request->getContent(), true);
         $request->request->replace($data);
 
         $counselor_id = $request->request->get('counselor_id');
-        $counselor = $this->getCounselor($counselor_id);
+        $counselor = $this->getCounselor($counselor_id); //getting the counselor object
 
         if($counselor->getIsActive()==0){
             $error = array(
@@ -225,6 +228,7 @@ class BusinessController extends Controller
             return new JsonResponse($error, 404);
         }
 
+        //Creating a new owner, CNDE Owner and Busienss object and assigning it the values of the json
         $owner = new Owner();
         $owner->setFirstName($request->request->get('first_name'));
         $owner->setLastName($request->request->get('last_name'));
@@ -261,7 +265,7 @@ class BusinessController extends Controller
         $business->setWorkedHours(0);
 
 
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager(); //finishing the query
         $em->persist($owner);
         $em->persist($cndeOwner);
         $em->persist($business);
@@ -354,8 +358,8 @@ class BusinessController extends Controller
     {
         $message = \Swift_Message::newInstance()
             ->setSubject('A new business have been added to the E-Ship Network Case Management')
-            ->setFrom('eship.test.email@gmail.com')
-            ->setTo('francisco.morales2@upr.edu')
+            ->setFrom('cnde@upr.edu')
+            ->setTo('roberto.irizarry2@upr.edu')
             ->setBody(
                 $this->renderView(
                     'EventBundle:Email:new_business_notification.html.twig',

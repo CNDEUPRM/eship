@@ -71,10 +71,8 @@ angular.module('eshipApp')
         {
           if($scope.validPassword() === true && $scope.isValid()===true)
           {
-            console.log($scope.registration);
             $scope.registration.password = md5.createHash($scope.registration.password_);
             $scope.registration.confirm_password = md5.createHash($scope.registration.confirm_password_);
-            console.log($scope.registration);
             counselorSvc.postCounselor(counselor_request_id, $scope.registration)
                 .then(function (response)
                 {

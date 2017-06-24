@@ -68,7 +68,6 @@ angular.module('eshipApp')
          */
         $scope.submitBusiness = function ()
         {
-          console.log($scope.registration);
           businessSvc.postBusinessClient($scope.registration)
             .then(function (response)
             {

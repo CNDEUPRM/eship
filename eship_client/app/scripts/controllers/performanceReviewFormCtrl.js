@@ -68,7 +68,6 @@ angular.module('eshipApp')
 
         $scope.submitReview = function ()
         {
-          console.log($scope.new_review);
           performanceReviewSvc.postNewPerformanceReview($scope.new_review)
             .then(function (response) {
               if(response.status !==200){

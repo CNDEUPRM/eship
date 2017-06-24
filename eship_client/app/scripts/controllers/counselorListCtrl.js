@@ -48,7 +48,6 @@ angular.module('eshipApp')
         {
           $scope.report.status = 1;
           $scope.report.counselor_id = counselor_id;
-          console.log($scope.report);
           adminSvc.putCounselor($scope.report)
             .then(function (response)
             {
@@ -84,7 +83,6 @@ angular.module('eshipApp')
         {
           $scope.report.status = 0;
           $scope.report.counselor_id = counselor_id;
-          console.log($scope.report);
           adminSvc.putCounselor($scope.report)
             .then(function (response)
             {

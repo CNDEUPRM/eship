@@ -187,7 +187,6 @@ angular.module('eshipApp')
         {
           $scope.report.work_duration = $scope.endM - $scope.startM;
           $scope.report.date = formatDate($scope.report.date_);
-          console.log($scope.report);
           workReportSvc.postWorkReport(work_report_info.business_id, work_report_info.meeting_report_id, $scope.report)
             .then(function (response) {
               console.log(response);

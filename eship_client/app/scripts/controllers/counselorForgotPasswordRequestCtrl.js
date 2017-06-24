@@ -24,7 +24,6 @@ angular.module('eshipApp')
 
       $scope.submitRequest = function() {
 
-        console.log($scope.resetEmail);
         changePasswordSvc.postCounselorForgot($scope.resetEmail)
           .then(function(response) {
             console.log(response);

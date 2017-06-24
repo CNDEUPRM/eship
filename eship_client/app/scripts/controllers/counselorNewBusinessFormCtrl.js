@@ -75,7 +75,6 @@ angular.module('eshipApp')
 
         $scope.submitBusiness = function ()
         {
-          console.log($scope.business);
           businessSvc.postBusinessCounselor($scope.business)
             .then(function (response) {
               console.log(response);

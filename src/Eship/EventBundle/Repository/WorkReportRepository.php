@@ -21,64 +21,75 @@ use Doctrine\ORM\EntityRepository;
  */
 class WorkReportRepository extends EntityRepository
 {
+    /**
+     * Query that returns a list of all the works reports associated with a specific meeting report
+     */
     public function getWorkReportList($business_id, $meetingReport_id)
     {
-        return $this->createQueryBuilder('wr')
-            ->andWhere('wr.business = :id_business')
-            ->andWhere('wr.meetingReport = :id_report')
-            ->leftJoin('wr.meetingReport', 'meetingReport')
-            ->leftJoin('wr.business', 'business')
-            ->leftJoin('wr.counselor', 'counselor')
-            ->addSelect('wr.updateId', 'wr.date', 'meetingReport.reportId', 'business.name',
+        return $this->createQueryBuilder('wr') //alias of the table
+            ->andWhere('wr.business = :id_business') //where clause of the query
+            ->andWhere('wr.meetingReport = :id_report') //where clause of the query
+            ->leftJoin('wr.meetingReport', 'meetingReport') //left join, work report and meeting report tables
+            ->leftJoin('wr.business', 'business') //left join, work report and business tables
+            ->leftJoin('wr.counselor', 'counselor') //left join counselor and work report tables
+            ->addSelect('wr.updateId', 'wr.date', 'meetingReport.reportId', 'business.name', //select clause of query
                         'counselor.firstName', 'counselor.lastName', 'counselor.initial')
             ->addSelect('business')
             ->addSelect('counselor')
-            ->addOrderBy('wr.date')
-            ->setParameter('id_business', $business_id)
-            ->setParameter('id_report', $meetingReport_id)
-            ->getQuery()
+            ->addOrderBy('wr.date') //Order By
+            ->setParameter('id_business', $business_id) //parameter used in the where clause, done like this to avoid SQL injections
+            ->setParameter('id_report', $meetingReport_id) //parameter used in the where clause, done like this to avoid SQL injections
+            ->getQuery() //finishing the query
             ->execute();
     }
 
-    //view a specific Meeting Report
+    /**
+     * Query that returns the data stored in a specific work report
+     */
     public function getWorkReport($business_id, $meetingReport_id, $update_id)
     {
-        return $this->createQueryBuilder('wr')
-            ->andWhere('wr.business = :id_business')
-            ->andWhere('wr.meetingReport = :id_report')
-            ->andWhere('wr.updateId = :id_update')
-            ->leftJoin('wr.meetingReport', 'meetingReport')
-            ->leftJoin('wr.business', 'business')
-            ->leftJoin('wr.counselor', 'counselor')
+        return $this->createQueryBuilder('wr') //alias of the table
+            ->andWhere('wr.business = :id_business') //Where clause of the query
+            ->andWhere('wr.meetingReport = :id_report') //Where clause of the query
+            ->andWhere('wr.updateId = :id_update') //where clause of the query
+            ->leftJoin('wr.meetingReport', 'meetingReport') //left join, work report and meeting report tables
+            ->leftJoin('wr.business', 'business') //left join, business and work report tables
+            ->leftJoin('wr.counselor', 'counselor') //left join, counselor and work report tables
             ->addSelect('wr.updateId', 'wr.date', 'wr.notes', 'wr.workedHours', 'wr.taskCompleted', 'wr.taskInProgress',
                 'meetingReport.reportId', 'business.name', 'counselor.firstName', 'counselor.lastName', 'counselor.initial')
             ->addSelect('business')
             ->addSelect('counselor')
-            ->setParameter('id_business', $business_id)
-            ->setParameter('id_report', $meetingReport_id)
-            ->setParameter('id_update', $update_id)
-            ->getQuery()
+            ->setParameter('id_business', $business_id) //parameter used in the where clause, done like this to avoid SQL injections
+            ->setParameter('id_report', $meetingReport_id) //parameter used in the where clause, done like this to avoid SQL injections
+            ->setParameter('id_update', $update_id) //parameter used in the where clause, done like this to avoid SQL injections
+            ->getQuery() //finishing the query
             ->execute();
     }
 
+    /**
+     * Query that returns the statistics of work reports in a time interval
+     */
     public function getWorkReportStatisticsByDate($start, $end)
     {
-        return $this->createQueryBuilder('wr')
+        return $this->createQueryBuilder('wr') //alias of the table
             ->addSelect('SUM(wr.workedHours) as totalWorkedHours',
-                'COUNT(wr.updateId) as totalWorkReports')
-            ->where('wr.date BETWEEN :start AND :end' )
-            ->setParameter('start', $start)
-            ->setParameter('end', $end)
-            ->getQuery()
+                'COUNT(wr.updateId) as totalWorkReports') //select clause of the query
+            ->where('wr.date BETWEEN :start AND :end' ) //where clause of the query
+            ->setParameter('start', $start) //parameter used in the where clause, done like this to avoid SQL injections
+            ->setParameter('end', $end) //parameter used in the where clause, done like this to avoid SQL injections
+            ->getQuery() //finishing the query
             ->execute();
     }
 
+    /**
+     * Query that returns the statistics of work reports
+     */
     public function getWorkReportStatistics()
     {
-        return $this->createQueryBuilder('wr')
+        return $this->createQueryBuilder('wr') //alias of the table
             ->addSelect('SUM(wr.workedHours) as totalWorkedHours',
-                'COUNT(wr.updateId) as totalWorkReports')
-            ->getQuery()
+                'COUNT(wr.updateId) as totalWorkReports') //select clause of the query
+            ->getQuery() //finishing the query
             ->execute();
     }
 }

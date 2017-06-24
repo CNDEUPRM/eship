@@ -12,99 +12,121 @@ use Doctrine\ORM\EntityRepository;
  */
 class BusinessRepository extends EntityRepository
 {
+
     public function getBusinessList()
     {
-        $conn = $this->getEntityManager()
+        $conn = $this->getEntityManager() //calls the Doctrine entity manager to start a query
             ->getConnection();
 
         $sql = '
             SELECT DISTINCT b.business_id, b.name, b.logo, o.firstName, o.lastName, o.initial, b.isActive
             FROM business b NATURAL JOIN owner o
-            ORDER BY b.name ASC';
-        $stmt = $conn->prepare($sql);
+            ORDER BY b.name ASC'; //simple query to get a list of all the businesses on the system
+        $stmt = $conn->prepare($sql); //finishing the query
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
     public function getInactiveBusinessList()
     {
-        $conn = $this->getEntityManager()
+        $conn = $this->getEntityManager() //calls the Doctrine entity manager to start a query
             ->getConnection();
 
         $sql = '
             SELECT DISTINCT b.business_id, b.name, b.logo, o.firstName, o.lastName, o.initial
             FROM business b NATURAL JOIN owner o 
             WHERE b.isActive = 0
-            ORDER BY b.name ASC';
-        $stmt = $conn->prepare($sql);
+            ORDER BY b.name ASC'; //simple query to get a list of all the inactive businesses on the system
+        $stmt = $conn->prepare($sql); //finishing the query
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
     public function getBusinessByOwnerId($id)
     {
-        return $this->createQueryBuilder('b')
-            ->andWhere('b.owner = :idParam')
-            ->leftJoin('b.owner', 'o')
+        /**
+         * Query that return a list of businesses owned by a specific owner
+         */
+        return $this->createQueryBuilder('b') //alias of the table
+            ->andWhere('b.owner = :idParam') //Where clause of query
+            ->leftJoin('b.owner', 'o') //left join of business table with owner table
             ->addSelect('b.business_id', 'b.name','o.firstName', 'o.lastName', 'o.initial', 'b.logo', 'b.isActive')
-            ->setParameter('idParam', $id)
-            ->getQuery()
+            //select clause of query
+            ->setParameter('idParam', $id) //parameter of the where clause, done this way to avoid SQL injections
+            ->getQuery() //finishing the query
             ->execute();
     }
 
     public function getBusinessById($business_id)
     {
-        return $this->createQueryBuilder('b')
-            ->andWhere('b.business_id = :idParam')
-            ->leftJoin('b.owner', 'o')
+        /**
+         * Query that gets the information of a specific business
+         */
+        return $this->createQueryBuilder('b') //alias of the table
+            ->andWhere('b.business_id = :idParam') //Where clause of query
+            ->leftJoin('b.owner', 'o') //left join of business table with owner table
             ->addSelect('b.business_id', 'b.name','o.firstName', 'o.lastName', 'o.initial', 'o.ownerEmail',
                         'b.businessLink', 'b.stageOfDevelopment','b.description', 'b.requestedHelp',
                         'b.numberOfEmployees', 'b.website', 'b.facebook','b.twitter', 'b.logo', 'b.isProject',
                         'b.isActive', 'b.publicInvestment', 'b.privateInvestment','b.participationBusinessCompetition',
                         'b.nameCompetition', 'b.award', 'b.typeOfBusiness', 'b.workedHours', 'b.date')
-            ->setParameter('idParam', $business_id)
-            ->getQuery()
+            //select clause of query
+            ->setParameter('idParam', $business_id) //parameter of the where clause, done this way to avoid SQL injections
+            ->getQuery() //finishing the query
             ->execute();
     }
 
     public function getBusinessStatistics($business_id)
     {
-        return $this->createQueryBuilder('b')
+        /**
+         * Query that return the statistics of a specific business in the system
+         */
+        return $this->createQueryBuilder('b') //alias of the table
             ->andWhere('b.business_id = :idParam')
             ->leftJoin('b.meetingReport', 'meetingReport')
             ->addSelect('b.name', 'b.business_id', 'b.stageOfDevelopment', 'b.numberOfEmployees',
                 'b.publicInvestment', 'b.privateInvestment', 'b.workedHours', 'COUNT(meetingReport.reportId)
                 as numberOfMeetings')
-            ->setParameter('idParam', $business_id)
-            ->getQuery()
+            ->setParameter('idParam', $business_id) //parameter of the where clause, done this way to avoid SQL injections
+            ->getQuery() //finishing the query
             ->execute();
     }
 
     public function getGeneralBusinessStatistics()
     {
-        return $this->createQueryBuilder('b')
+        /**
+         * Query that returns the statistics of all the businesses in the system
+         */
+        return $this->createQueryBuilder('b') //alias of the table
             ->addSelect('SUM(b.numberOfEmployees) as jobsCreated', 'SUM(b.publicInvestment) as totalPublicInvestment',
                 'SUM(b.privateInvestment) as totalPrivateInvestment', 'SUM(b.workedHours) as totalWorkedHours')
-            ->getQuery()
+            ->getQuery() //finishing the query
             ->execute();
     }
 
     public function countBusiness()
     {
-        return $this->createQueryBuilder('b')
-            ->select('COUNT(b.business_id) as totalBusiness', 'b.workedHours as worked_hours')
-            ->getQuery()
+        /**
+         * Query that counts the number of businesses on the system
+         */
+        return $this->createQueryBuilder('b')  //alias of the table
+            ->select('COUNT(b.business_id) as totalBusiness', 'b.workedHours as worked_hours') //select clause of query
+            ->getQuery() //finishing the query
             ->execute();
     }
 
     public function countNewBusinessInInterval($start, $end)
     {
+        /**
+         * Query that returns the sum of all the businesses created inside a time interval
+         */
         return $this->createQueryBuilder('b')
-            ->select('COUNT(b.business_id) as newBusinesses', 'b.workedHours as worked_hours')
-            ->where('b.date BETWEEN :start AND :end' )
+            ->select('COUNT(b.business_id) as newBusinesses', 'b.workedHours as worked_hours') //select clause of query
+            ->where('b.date BETWEEN :start AND :end' ) //Where clause of query
+            //parameter of the where clause, done this way to avoid SQL injections
             ->setParameter('start', $start)
             ->setParameter('end', $end)
-            ->getQuery()
+            ->getQuery() //finishing the query
             ->execute();
     }
 

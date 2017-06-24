@@ -12,15 +12,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class PerformanceReviewRepository extends EntityRepository
 {
+    /**
+     * Query that returns a list of all the performance reviews on the system
+     */
     public function getPerformanceReviewSummary()
     {
-        return $this->createQueryBuilder('pr')
-            ->leftJoin('pr.counselor', 'counselor')
+        return $this->createQueryBuilder('pr') //alias of the table
+            ->leftJoin('pr.counselor', 'counselor') //left join of performance review table and counselor table
             ->addSelect('pr.performanceReviewId', 'pr.date', 'pr.clientEmail', 'pr.clientFirstName', 'pr.clientLastName',
                 'pr.satisfactionLevel', 'pr.comment', 'pr.usefulnessOfService', 'pr.city', 'pr.phone','counselor.firstName',
-                'counselor.initial', 'counselor.lastName')
-            ->addOrderBy('pr.date')
-            ->getQuery()
+                'counselor.initial', 'counselor.lastName') //Select clause of the query
+            ->addOrderBy('pr.date') //Order By
+            ->getQuery() //finishing the query
             ->execute();
     }
 

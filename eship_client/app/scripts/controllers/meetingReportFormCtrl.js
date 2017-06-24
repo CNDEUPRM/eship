@@ -232,7 +232,6 @@ angular.module('eshipApp')
           $scope.report.meeting_duration = $scope.endM - $scope.startM;
           $scope.report.date = formatDate($scope.report.date_);
           $scope.report.next_meeting = formatDate($scope.report.next_meeting_);
-          console.log($scope.report);
           meetingReportSvc.postMeetingReport(business_id, $scope.report)
             .then(function (response)
             {

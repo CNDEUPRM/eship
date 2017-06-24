@@ -12,17 +12,21 @@ use Doctrine\ORM\EntityRepository;
  */
 class ClientRepository extends EntityRepository
 {
+    /**
+     * Query that returns the information of a specific owner
+     */
     public function getClient($id)
     {
-        return $this->createQueryBuilder('client')
-            ->leftJoin('client.owner', 'owner')
-            ->andWhere('client.clientId = :idParam')
+        return $this->createQueryBuilder('client') //alias of the table
+            ->leftJoin('client.owner', 'owner') //left join of the client table with the owner table
+            ->andWhere('client.clientId = :idParam') //where clause of the query
             ->addSelect('client.clientId', 'client.clientEmail', 'owner.firstName', 'owner.lastName',
                         'owner.initial', 'client.age', 'client.gender', 'client.phone', 'client.relationshipWithUPRM',
                         'client.specification', 'client.department', 'client.businessNotCNDE', 'client.learnOfServices',
                         'client.address1', 'client.address2', 'client.city', 'client.zipCode', 'client.country')
-            ->setParameter('idParam', $id)
-            ->getQuery()
+            //select clause of the query
+            ->setParameter('idParam', $id) //parameter used in the where clause, done like this to avoid SQL injections
+            ->getQuery() //finishing the query
             ->execute();
     }
 }

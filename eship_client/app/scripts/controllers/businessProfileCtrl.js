@@ -50,7 +50,6 @@ angular.module('eshipApp')
         {
           $scope.report.status = 1;
           $scope.report.business_id = $business_id;
-          console.log($scope.report);
           adminSvc.putBusiness($scope.report)
             .then(function (response)
             {

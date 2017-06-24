@@ -52,7 +52,6 @@ angular.module('eshipApp')
 
         $scope.postNewUser = function ()
         {
-          console.log($scope.new_user);
           adminSvc.postNewCounselor($scope.new_user)
             .then(function (response) {
               console.log(response);

@@ -49,7 +49,6 @@ angular.module('eshipApp')
           $scope.post.confirm_password = md5.createHash($scope.reset.confirm_password_);
           if($scope.isValid()===true && $scope.validPassword())
           {
-            console.log($scope.post);
             changePasswordSvc.putCounselorForgot(request_id, $scope.post)
               .then(function (response) {
                 console.log(response);

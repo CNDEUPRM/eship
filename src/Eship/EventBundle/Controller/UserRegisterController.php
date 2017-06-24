@@ -160,7 +160,7 @@ class UserRegisterController extends Controller
     {
         $message = \Swift_Message::newInstance()
             ->setSubject('Welcome to the E-Ship Network Case Management')
-            ->setFrom('eship.test.email@gmail.com')
+            ->setFrom('cnde@uprm.edu')
             ->setTo($email)
             ->setBody(
                 $this->renderView(
@@ -183,8 +183,8 @@ class UserRegisterController extends Controller
     {
         $message = \Swift_Message::newInstance()
             ->setSubject('A new Business have been added to the E-Ship Network Case Management')
-            ->setFrom('eship.test.email@gmail.com')
-            ->setTo('francisco.morales2@upr.edu')
+            ->setFrom('cnde@uprm.edu')
+            ->setTo('roberto.irizarry2@upr.edu')
             ->setBody(
                 $this->renderView(
                     'EventBundle:Email:new_business_notification.html.twig',

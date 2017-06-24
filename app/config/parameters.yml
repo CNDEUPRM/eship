@@ -7,6 +7,6 @@ parameters:
     database_password: e9k0i8f16mg3s9f6
     mailer_transport: gmail
     mailer_host: 127.0.0.1
-    mailer_user: eship.test.email@gmail.com
-    mailer_password: Eship!@#$
+    mailer_user: cnde@uprm.edu
+    mailer_password: Negocio2011
     secret: cdb61c2c44075061eb27d382043c3925c659148d

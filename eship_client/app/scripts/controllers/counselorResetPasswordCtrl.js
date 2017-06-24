@@ -61,7 +61,6 @@ angular.module('eshipApp')
           $scope.change.current_password = md5.createHash($scope.change.current_password_);
           $scope.change.new_password = md5.createHash($scope.change.new_password_);
           $scope.change.confirm_password = md5.createHash($scope.change.confirm_password_);
-          console.log($scope.change);
           if($scope.validPassword()===true)
           {
             changePasswordSvc.putCounselorChange($scope.change)

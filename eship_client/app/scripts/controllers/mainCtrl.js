@@ -63,7 +63,6 @@ angular.module('eshipApp')
          * Receive businessId from other child controllers
          */
         $rootScope.$on('business', function (event, businessId) {
-          console.log(businessId);
           // Get Business Info from server
           businessSvc.getBusinessInfo(businessId)
             .then(function (response) {

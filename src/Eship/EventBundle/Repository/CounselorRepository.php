@@ -12,42 +12,48 @@ use Doctrine\ORM\EntityRepository;
  */
 class CounselorRepository extends EntityRepository
 {
+    /**
+     * Query that returns a list of all the counselors or administrators in the system
+     */
     public function getCounselorList()
     {
-        $conn = $this->getEntityManager()
+        $conn = $this->getEntityManager() //calls the Doctrine entity manager to start a query
             ->getConnection();
 
         $sql = '
             SELECT DISTINCT c.counselorId, c.firstName, c.lastName, c.initial, c.department, c.position, c.isAdmin, c.isActive as active
             FROM counselor c 
             ORDER BY c.firstName ASC';
-        $stmt = $conn->prepare($sql);
+        $stmt = $conn->prepare($sql); //finishing the query
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
     public function getCounselor($id)
     {
-        return $this->createQueryBuilder('counselor')
-            ->andWhere('counselor.counselorId = :idParam')
+        /**
+         * Query that returns the information of a specific counselor
+         */
+        return $this->createQueryBuilder('counselor') //alias of the table
+            ->andWhere('counselor.counselorId = :idParam') //Where clause of the query
             ->addSelect('counselor.counselorId', 'counselor.counselorEmail', 'counselor.firstName', 'counselor.lastName',
                 'counselor.initial', 'counselor.age', 'counselor.gender', 'counselor.phone', 'counselor.position',
                 'counselor.department', 'counselor.cndeOrganization', 'counselor.isAdmin', 'counselor.isActive',
                 'counselor.courses')
-            ->setParameter('idParam', $id)
-            ->getQuery()
+            //select clause of the query
+            ->setParameter('idParam', $id) //parameter used in the where clause, done like this to avoid SQL injections
+            ->getQuery() //finishing the query
             ->execute();
     }
 
     public function getCounselorWorkReport($id)
     {
-        return $this->createQueryBuilder('counselor')
-            ->andWhere('counselor.counselorId = :idParam')
-            ->leftJoin('counselor.counselorId', 'meetingReport')
-            //->leftJoin('meetingReport', )
-            ->addSelect('counselor.firstName', 'counselor.initial', 'counselor.lastName')
-            ->setParameter('idParam', $id)
-            ->getQuery()
+        return $this->createQueryBuilder('counselor') //alias of the table
+            ->andWhere('counselor.counselorId = :idParam') //where clause
+            ->leftJoin('counselor.counselorId', 'meetingReport') //left join of counselor table and meeting report table
+            ->addSelect('counselor.firstName', 'counselor.initial', 'counselor.lastName') //select clause
+            ->setParameter('idParam', $id) //parameter used in the where clause, done like this to avoid sql injections
+            ->getQuery() //finishing the query
             ->execute();
     }
 

@@ -228,7 +228,7 @@ class ChangePasswordController extends Controller
     {
         $message = \Swift_Message::newInstance()
             ->setSubject('Password Reset Request')
-            ->setFrom('eship.test.email@gmail.com')
+            ->setFrom('cnde@uprm.edu')
             ->setTo($email)
             ->setBody(
                 $this->renderView(

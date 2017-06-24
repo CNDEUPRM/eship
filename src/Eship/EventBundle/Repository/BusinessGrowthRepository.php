@@ -12,38 +12,44 @@ use Doctrine\ORM\EntityRepository;
  */
 class BusinessGrowthRepository extends EntityRepository
 {
+    /**
+     * Query that returns a list of all the tuples in the business growth table for a specific business
+     */
     public function getBusinessGrowthTracker($business_id, $stage)
     {
-        return $this->createQueryBuilder('bg')
-            ->andWhere('bg.business = :id_business')
-            ->andWhere('bg.stage = :stage')
-            ->leftJoin('bg.business', 'business')
-            ->leftJoin('bg.counselor','counselor')
+        return $this->createQueryBuilder('bg') //alias of the table
+            ->andWhere('bg.business = :id_business') //condition of query
+            ->andWhere('bg.stage = :stage') // condition of query
+            ->leftJoin('bg.business', 'business') //left join of business_growth table and business table
+            ->leftJoin('bg.counselor','counselor') //left join of business_growth table and counselor table
             ->addSelect('bg.bGrowthId', 'business.name', 'bg.stage', 'counselor.firstName',
-                        'counselor.initial', 'counselor.lastName', 'bg.status')
-            ->setParameter('id_business', $business_id)
-            ->setParameter('stage', $stage)
+                        'counselor.initial', 'counselor.lastName', 'bg.status') //Select clause of query
+            ->setParameter('id_business', $business_id) //Parameter, used in the condition of the query.
+                                                                // Done like this to avoid SQL injections
+            ->setParameter('stage', $stage) //Parameter, used in the condition of the query.
+                                                // Done like this to avoid SQL injections
             ->getQuery()
-            ->execute();
+            ->execute(); //finish query
     }
 
     public function editBusinessGrowth($business_id, $stage, $task, $counselorId, $status)
     {
         $qb = $this->createQueryBuilder('bg')
             ->update()
-            ->set('bg.status', ':statusParam')
-            //->set('bg.date', new \DateTime('now'))
-            ->set('bg.counselor', ':counselorParam')
-            ->andWhere('bg.business = :businessParam')
-            ->andWhere('bg.stage = :stageParam')
-            ->andWhere('bg.task = :taskParam')
+            ->set('bg.status', ':statusParam') //condition of query
+            ->set('bg.counselor', ':counselorParam') //condition of query
+            ->andWhere('bg.business = :businessParam') //where clause
+            ->andWhere('bg.stage = :stageParam') //where clause
+            ->andWhere('bg.task = :taskParam') //where clause
+            //Parameter, used in the condition of the query.
+            // Done like this to avoid SQL injections
             ->setParameter('statusParam', $status)
             ->setParameter('counselorParam', $counselorId)
             ->setParameter('businessParam', $business_id)
             ->setParameter('stageParam', $stage)
             ->setParameter('taskParam', $task)
             ->getQuery()
-            ->execute();
+            ->execute(); //finish query
 
         return 'Update Done Successfully';
     }
